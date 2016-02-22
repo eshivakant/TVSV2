@@ -1,0 +1,118 @@
+﻿    @{
+        Layout = null;
+    }
+    <h2>Person</h2>
+    <p>
+        <a href="#/Person/Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                AddressOccupations
+            </th>
+            <th>
+                AddressOwnerships
+            </th>
+            <th>
+                DomainAspnetPersonMaps
+            </th>
+            <th>
+                PersonAttributes
+            </th>
+            <th>
+                PersonRatings
+            </th>
+            <th>
+                Initial
+            </th>
+            <th>
+                FirstName
+            </th>
+            <th>
+                MiddleName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                DateOfBirth
+            </th>
+            <th>
+                PlaceOfBirth
+            </th>
+            <th>
+                AdhaarCard
+            </th>
+            <th>
+                PAN
+            </th>
+            <th>
+                IdentificationMark
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in data">
+            <td>
+                    <a ng-href="#AddressOccupation?Person={{item.Id }}" >
+                    {{item.AddressOccupations_Count}}
+                    </a>
+            </td>
+            <td>
+                    <a ng-href="#AddressOwnership?Person={{item.Id }}" >
+                    {{item.AddressOwnerships_Count}}
+                    </a>
+            </td>
+            <td>
+                    <a ng-href="#DomainAspnetPersonMap?Person={{item.Id }}" >
+                    {{item.DomainAspnetPersonMaps_Count}}
+                    </a>
+            </td>
+            <td>
+                    <a ng-href="#PersonAttribute?Person={{item.Id }}" >
+                    {{item.PersonAttributes_Count}}
+                    </a>
+            </td>
+            <td>
+                    <a ng-href="#PersonRating?Person={{item.Id }}" >
+                    {{item.PersonRatings_Count}}
+                    </a>
+            </td>
+            <td>
+                {{ item.Initial }}
+            </td>
+            <td>
+                {{ item.FirstName }}
+            </td>
+            <td>
+                {{ item.MiddleName }}
+            </td>
+            <td>
+                {{ item.LastName }}
+            </td>
+            <td>
+                {{ item.DateOfBirth }}
+            </td>
+            <td>
+                {{ item.PlaceOfBirth }}
+            </td>
+            <td>
+                {{ item.AdhaarCard }}
+            </td>
+            <td>
+                {{ item.PAN }}
+            </td>
+            <td>
+                {{ item.IdentificationMark }}
+            </td>
+            <td>
+                <a ng-href="#/Person/Edit/{{item.Id}}">Edit</a> |
+                <a ng-href="#/Person/{{item.Id}}">Details</a> |
+                <a ng-href="#/Person/Delete/{{item.Id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    
+    </table>

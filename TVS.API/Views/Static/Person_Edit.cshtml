@@ -1,0 +1,90 @@
+﻿@{
+    Layout = null;
+}
+    <h2>Person</h2>
+    <form name="theForm">
+        <div class="form-horizontal">
+            <ul id="validationSummary"></ul>
+            <div class="form-group">
+                <label for="Initial" class = "control-label col-md-2"> Initial </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.Initial" id="Initial"  class="form-control"/>
+                    <div id="validation_for_Initial"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="FirstName" class = "control-label col-md-2"> FirstName </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.FirstName" id="FirstName"  class="form-control"/>
+                    <div id="validation_for_FirstName"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="MiddleName" class = "control-label col-md-2"> MiddleName </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.MiddleName" id="MiddleName"  class="form-control"/>
+                    <div id="validation_for_MiddleName"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="LastName" class = "control-label col-md-2"> LastName </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.LastName" id="LastName"  class="form-control"/>
+                    <div id="validation_for_LastName"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="DateOfBirth" class = "control-label col-md-2"> DateOfBirth </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.DateOfBirth" id="DateOfBirth"  class="form-control"/>
+                    <div id="validation_for_DateOfBirth"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="PlaceOfBirth" class = "control-label col-md-2"> PlaceOfBirth </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.PlaceOfBirth" id="PlaceOfBirth"  class="form-control"/>
+                    <div id="validation_for_PlaceOfBirth"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="AdhaarCard" class = "control-label col-md-2"> AdhaarCard </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.AdhaarCard" id="AdhaarCard"  class="form-control"/>
+                    <div id="validation_for_AdhaarCard"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="PAN" class = "control-label col-md-2"> PAN </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.PAN" id="PAN"  class="form-control"/>
+                    <div id="validation_for_PAN"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="IdentificationMark" class = "control-label col-md-2"> IdentificationMark </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.IdentificationMark" id="IdentificationMark"  class="form-control"/>
+                    <div id="validation_for_IdentificationMark"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Save" class="btn btn-default" ng-click="save()" />
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <div>
+        <a href="#/Person">Back to List</a>
+    </div>

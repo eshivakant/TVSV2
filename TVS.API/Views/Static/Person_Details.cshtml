@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+    <h2>Person Details Test</h2>
+        <div class="form-horizontal">
+            <ul id="validationSummary"></ul>
+            <div class="form-group">
+                <label for="AddressOccupations" class = "control-label col-md-2">
+                 AddressOccupations
+                </label>
+                <div class="col-md-10">
+                    <a ng-href="#AddressOccupation?Person={{data.Id }}" >
+                    {{data.AddressOccupations_Count}}
+                    </a>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="AddressOwnerships" class = "control-label col-md-2">
+                 AddressOwnerships
+                </label>
+                <div class="col-md-10">
+                    <a ng-href="#AddressOwnership?Person={{data.Id }}" >
+                    {{data.AddressOwnerships_Count}}
+                    </a>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="DomainAspnetPersonMaps" class = "control-label col-md-2">
+                 DomainAspnetPersonMaps
+                </label>
+                <div class="col-md-10">
+                    <a ng-href="#DomainAspnetPersonMap?Person={{data.Id }}" >
+                    {{data.DomainAspnetPersonMaps_Count}}
+                    </a>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="PersonAttributes" class = "control-label col-md-2">
+                 PersonAttributes
+                </label>
+                <div class="col-md-10">
+                    <a ng-href="#PersonAttribute?Person={{data.Id }}" >
+                    {{data.PersonAttributes_Count}}
+                    </a>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="PersonRatings" class = "control-label col-md-2">
+                 PersonRatings
+                </label>
+                <div class="col-md-10">
+                    <a ng-href="#PersonRating?Person={{data.Id }}" >
+                    {{data.PersonRatings_Count}}
+                    </a>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="Initial" class = "control-label col-md-2">
+                Initial
+                </label>
+                <div class="col-md-10">
+                    {{data.Initial}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="FirstName" class = "control-label col-md-2">
+                FirstName
+                </label>
+                <div class="col-md-10">
+                    {{data.FirstName}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="MiddleName" class = "control-label col-md-2">
+                MiddleName
+                </label>
+                <div class="col-md-10">
+                    {{data.MiddleName}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="LastName" class = "control-label col-md-2">
+                LastName
+                </label>
+                <div class="col-md-10">
+                    {{data.LastName}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="DateOfBirth" class = "control-label col-md-2">
+                DateOfBirth
+                </label>
+                <div class="col-md-10">
+                    {{data.DateOfBirth}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="PlaceOfBirth" class = "control-label col-md-2">
+                PlaceOfBirth
+                </label>
+                <div class="col-md-10">
+                    {{data.PlaceOfBirth}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="AdhaarCard" class = "control-label col-md-2">
+                AdhaarCard
+                </label>
+                <div class="col-md-10">
+                    {{data.AdhaarCard}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="PAN" class = "control-label col-md-2">
+                PAN
+                </label>
+                <div class="col-md-10">
+                    {{data.PAN}}
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="IdentificationMark" class = "control-label col-md-2">
+                IdentificationMark
+                </label>
+                <div class="col-md-10">
+                    {{data.IdentificationMark}}
+                </div>
+            </div>
+    
+           
+        </div>
+    
+    <div>
+        <a href="#/Person">Back to List</a>
+    </div>
