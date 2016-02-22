@@ -219,6 +219,41 @@ namespace TVS.API.Controllers
         }
 
 
+
+        [Route("SaveLandlord")]
+        [HttpPost]
+        public async Task<IHttpActionResult> SavePreviousLandlord([FromBody] Person person)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    foreach (var personAttribute in person.PersonAttributes)
+                    {
+                        personAttribute.RoleAttribute = null;
+                    }
+
+                    _context.People.Add(person);
+                    await _context.SaveChangesAsync();
+
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok(person);
+        }
+
+
+
         //Get Tenant(my object)
         [HttpGet]
         [Route("MyDetails")]

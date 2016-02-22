@@ -29,6 +29,7 @@ app.controller('signUpLandlordController', [
 
                 $http.post(serviceBase + '/Api/Landlord/SaveTenant', tenant)
                  .success(function (response) {
+                     $location.path("");
                  })
                  .error(function () { $scope.registrationError = "failed to save due to errors in the form" });
             }

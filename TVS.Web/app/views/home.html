@@ -16,21 +16,39 @@
 </div>
 
 
-<div class="row">
-        <div class="col-md-2">
-            &nbsp;
-        </div>
-        <div class="col-md-4">
-            <h2>Login</h2>
-            <p class="text-primary">If you have Username and Password, you can use the button below to access the secured content using a token.</p>
-            <p><a class="btn btn-info" href="#/login" role="button">Login &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Sign Up</h2>
-            <p class="text-primary">Use the button below to create Username and Password to access the secured content using a token.</p>
-            <p><a class="btn btn-info" href="#/signup" role="button">Sign Up &raquo;</a></p>
-        </div>
-        <div class="col-md-2">
-            &nbsp;
-        </div>
+<div class="row" data-ng-hide="authentication.isAuth">
+    <div class="col-md-2">
+        &nbsp;
     </div>
+    <div class="col-md-4">
+        <h2>Login</h2>
+        <p class="text-primary">If you have Username and Password, you can use the button below to access the secured content using a token.</p>
+        <p><a class="btn btn-info" href="#/login" role="button">Login &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Sign Up</h2>
+        <p class="text-primary">Use the button below to create Username and Password to access the secured content using a token.</p>
+        <p>
+            <a class="btn btn-info" href="#/signup" role="button">Sign Up &raquo;</a>
+        </p>
+    </div>
+
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+</div>
+
+
+<div class="row text-center" data-ng-hide="!authentication.isAuth">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-8">
+        <h2>No legacy is richer than honesty and a good character. Let's prove!</h2>
+        <p class="text-primary">Welcome {{authentication.userName}}! Be a a part of the community who refuse to believe that fake and thugs can ruin our society. Now that you have started your journey, never again go un-informed about people you are dealing with. "Authenticity" is all about being real.  Genuine, not an imitation!</p>
+        <p><a class="btn btn-info" href="#/dashboard" role="button">My Dashboard &raquo;</a></p>
+    </div>
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+</div>

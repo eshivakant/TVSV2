@@ -11,10 +11,40 @@ app.controller('signUpTenantController', [
                 $scope.newPerson = response.data;
                 $scope.getLandlordTemplate($q).then(function (result) {
                     var landlordTemplate = result;
+                    for (var i = 0; i < $scope.newPerson.addressOccupations.length; i++) {
+                        $scope.newPerson.addressOccupations[i].previousLandlord = JSON.parse(JSON.stringify(landlordTemplate));
+                    }
                 });
             });
 
 
+
+        $scope.savePreviousLandlords = function () {
+            var person = $scope.newPerson;
+            for (var i = 0; i < person.addressOccupations.length; i++) {
+                var landlord = person.addressOccupations[i].previousLandlord;
+                landlord.placeOfBirth = "NA";
+                $scope.addNewAddressOwnership(landlord, person.addressOccupations[i].address, person.addressOccupations[i].occupiedFrom, person.addressOccupations[i].occupiedTo);
+
+                $http.post(serviceBase + '/Api/Tenant/SaveLandlord', landlord)
+                 .success(function (response) {
+                        $location.path("");
+                    })
+                 .error(function () { $scope.registrationError = "failed to save due to errors in the form" });
+            }
+        }
+
+
+        $scope.addNewAddressOwnership = function (person, address, ownedFrom, ownedTo) {
+            var newOwnership = new function () {
+                this.ownedFrom = new Date(ownedFrom);
+                this.ownedTo = new Date(ownedTo);
+                this.address = address;
+            }
+            person.addressOwnerships = [];
+            person.addressOwnerships.push(newOwnership);
+
+        }
 
 
         $scope.getLandlordTemplate = function ($q) {
