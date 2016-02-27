@@ -2,11 +2,22 @@
 var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
 
 app.config(function ($routeProvider) {
-
     $routeProvider.when("/home", {
         controller: "homeController",
         templateUrl: "/app/views/home.html"
     });
+
+    $routeProvider.when("/landlordhome", {
+        controller: "landlordHomeCtrl",
+        templateUrl: "/app/views/Dashboard/Landlord/home.html"
+    });
+
+
+    $routeProvider.when("/tenanthome", {
+        controller: "tenantHomeCtrl",
+        templateUrl: "/app/views/dashboard/tenant/home.html"
+    });
+
 
     $routeProvider.when("/login", {
         controller: "loginController",

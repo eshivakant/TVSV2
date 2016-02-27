@@ -4,6 +4,7 @@ app.directive('jqdatepicker', function ($filter) {
         restrict: 'A',
         require: 'ngModel',
         link: function (scope, element, attrs, ngModelCtrl) {
+
             $(function () {
                 element.datepicker({
                     dateFormat: 'dd/mm/yy',
@@ -18,6 +19,7 @@ app.directive('jqdatepicker', function ($filter) {
                         });
                     }
                 });
+
             });
 
             ngModelCtrl.$formatters.unshift(function (v) {
