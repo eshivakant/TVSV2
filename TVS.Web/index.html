@@ -9,7 +9,8 @@
     <link href="content/css/site.css" rel="stylesheet" />
     <link href="content/css/loading-bar.css" rel="stylesheet" />
     <link href="content/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="content/css/social-buttons.css" rel="stylesheet" />
+    <link href="content/css/social-buttons.css" rel="stylesheet"/>
+    <!--<link href="content/css/animate.css" rel="stylesheet" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -31,12 +32,13 @@
                     <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
                 </ul>
             </div>
+            
         </div>
     </div>
 
 
     <div class="container">
-        <div data-ng-view="">
+        <div data-ng-view="" >
         </div>
     </div>
     <hr />
@@ -59,7 +61,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="scripts/angular-local-storage.min.js"></script>
-
+    <!--<script src="http://code.angularjs.org/1.2.11/angular-animate.min.js"></script>-->
 
 
 
@@ -89,7 +91,8 @@
     <script src="app/controllers/postLoginController.js?v=2"></script>
     <script src="app/controllers/signUpTenantController.js"></script>
     <script src="app/controllers/signUpLandlordController.js"></script>
-    <script src="app/views/Dashboard/Landlord/landlordHomeCtrl.js"></script>
+    <script src="app/views/Dashboard/Landlord/home.js"></script>
+    <script src="app/views/Dashboard/Tenant/home.js"></script>
 
     <!-- Load custom filters -->
     <!-- Load custom directives -->

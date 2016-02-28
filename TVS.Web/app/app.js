@@ -99,6 +99,139 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/associate.html"
     });
 
+    //landlord dashboard
+    $routeProvider.when("/myratings", {
+        controller: "myRatingsCtrl",
+        templateUrl: "/app/views/dashboard/landlord/myratings.html"
+    });
+
+    $routeProvider.when("/myreviews", {
+        controller: "myReviewsCtrl",
+        templateUrl: "/app/views/dashboard/landlord/myreviews.html"
+    });
+
+
+    $routeProvider.when("/policeverification", {
+        controller: "policeVerificationCtrl",
+        templateUrl: "/app/views/dashboard/landlord/policeverification.html"
+    });
+
+
+    $routeProvider.when("/profile", {
+        controller: "profileCtrl",
+        templateUrl: "/app/views/dashboard/landlord/xxxx.html"
+    });
+
+
+    $routeProvider.when("/ratetenant", {
+        controller: "rateTenantCtrl",
+        templateUrl: "/app/views/dashboard/landlord/ratetenant.html"
+    });
+
+
+    $routeProvider.when("/reportnewtenant", {
+        controller: "reportnewtenantCtrl",
+        templateUrl: "/app/views/dashboard/landlord/reportnewtenant.html"
+    });
+
+
+    $routeProvider.when("/score", {
+        controller: "scoreCtrl",
+        templateUrl: "/app/views/dashboard/landlord/score.html"
+    });
+
+
+    $routeProvider.when("/search", {
+        controller: "searchCtrl",
+        templateUrl: "/app/views/dashboard/landlord/search.html"
+    });
+
+
+    $routeProvider.when("/tenantcheck", {
+        controller: "tenantCheckCtrl",
+        templateUrl: "/app/views/dashboard/landlord/tenantcheck.html"
+    });
+
+
+    $routeProvider.when("/tenanthistory", {
+        controller: "tenanthistoryCtrl",
+        templateUrl: "/app/views/dashboard/landlord/tenanthistory.html"
+    });
+
+
+    $routeProvider.when("/creditcheck", {
+        controller: "creditCheckCtrl",
+        templateUrl: "/app/views/dashboard/landlord/creditcheck.html"
+    });
+
+  
+    //tenant dashboard
+    $routeProvider.when("/myratings", {
+        controller: "myRatingsCtrl",
+        templateUrl: "/app/views/dashboard/tenant/myratings.html"
+    });
+
+    $routeProvider.when("/myreviews", {
+        controller: "myReviewsCtrl",
+        templateUrl: "/app/views/dashboard/tenant/myreviews.html"
+    });
+
+
+    $routeProvider.when("/policeverification", {
+        controller: "policeVerificationCtrl",
+        templateUrl: "/app/views/dashboard/tenant/policeverification.html"
+    });
+
+
+    $routeProvider.when("/profile", {
+        controller: "profileCtrl",
+        templateUrl: "/app/views/dashboard/tenant/profile.html"
+    });
+
+
+    $routeProvider.when("/ratelandlord", {
+        controller: "rateLandlordCtrl",
+        templateUrl: "/app/views/dashboard/tenant/ratelandlord.html"
+    });
+
+
+    $routeProvider.when("/reportmove", {
+        controller: "reportMoveCtrl",
+        templateUrl: "/app/views/dashboard/tenant/reportmove.html"
+    });
+
+
+    $routeProvider.when("/score", {
+        controller: "scoreCtrl",
+        templateUrl: "/app/views/dashboard/tenant/score.html"
+    });
+
+
+
+    $routeProvider.when("/search", {
+        controller: "searchCtrl",
+        templateUrl: "/app/views/dashboard/tenant/search.html"
+    });
+
+
+    $routeProvider.when("/addresscheck", {
+        controller: "addressCheckCtrl",
+        templateUrl: "/app/views/dashboard/tenant/addresscheck.html"
+    });
+
+
+    $routeProvider.when("/landlordhistory", {
+        controller: "landlordHistoryCtrl",
+        templateUrl: "/app/views/dashboard/tenant/landlordhistory.html"
+    });
+
+
+
+
+
+
+
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 
 });
