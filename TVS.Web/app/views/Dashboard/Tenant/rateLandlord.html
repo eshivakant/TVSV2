@@ -1,1 +1,143 @@
-﻿<div class="h1">Rate Landlord</div>
+﻿
+<link href="../../../../content/css/infocard.css" rel="stylesheet" />
+<div class="container">
+
+
+    <div class="h1">Rate Your Previous Accomodation</div>
+
+
+    <div class="row layout-margin-md" ng-hide="landlordSelected">
+        <div class="[ col-sm-6 col-md-3 col-lg-2]" ng-repeat="person in myLandlords">
+            <div class="[ info-card ]" ng-click="startRating(person)">
+                <img style="width: 100%" src="https://www.icsi.berkeley.edu/icsi/sites/default/files/staff_photos/generic_avatar.jpg" />
+                <div class="[ info-card-details ] animate" style="cursor:pointer">
+                    <div class="[ info-card-header ]">
+                        <h1> {{fullName(person)}} </h1>
+                        <h3>Lived at {{fullAddress(person.addressOwnerships[0].address)}} from {{person.addressOwnerships[0].occupiedFrom| date:'mediumDate' | ifEmpty:'NA'}} to {{person.addressOwnerships[0].occupiedTo| date:'mediumDate' | ifEmpty:'NA'}} </h3>
+                    </div>
+                    <div class="[ info-card-detail ]">
+                        <!-- Description -->
+                        <p>
+                            Born at {{tenant.placeOfBirth| ifEmpty:'NA'}} on {{tenant.dateOfBirth| date:'mediumDate' | ifEmpty:'NA'}} . PAN #{{tenant.pan| ifEmpty:'NA'}} and Adhaar #{{tenant.adhaarCard| ifEmpty:'NA'}}.
+
+
+
+                            <span ng-repeat="attr in tenant.personAttributes">
+
+                                {{attr.roleAttribute.description}} is
+
+
+                                <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='string'">
+                                    {{attr.stringValue}}
+                                </span>
+                                <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='int'">
+                                    {{attr.intValue}}
+                                </span>
+                                <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='float'">
+                                    {{attr.floatValue}}
+                                </span>
+                                <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='date'">
+                                    {{attr.dateValue}}
+                                </span>
+
+                            </span>
+
+
+
+                        </p>
+                        <div class="social">
+                            <a href="https://www.facebook.com/rem.mcintosh" class="[ social-icon facebook ] animate"><span class="fa fa-facebook"></span></a>
+
+                            <a href="https://twitter.com/Mouse0270" class="[ social-icon twitter ] animate"><span class="fa fa-twitter"></span></a>
+
+                            <a href="https://github.com/mouse0270" class="[ social-icon github ] animate"><span class="fa fa-github-alt"></span></a>
+
+                            <a href="https://plus.google.com/u/0/115077481218689845626/posts" class="[ social-icon google-plus ] animate"><span class="fa fa-google-plus"></span></a>
+
+                            <a href="www.linkedin.com/in/remcintosh/" class="[ social-icon linkedin ] animate"><span class="fa fa-linkedin"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="row setup-content" ng-show="landlordSelected">
+
+        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
+            <div>
+                <h3>Tell us what you want to share with us about your tenant:</h3>
+
+                <hr />
+
+
+                <div class="form-horizontal">
+
+
+                    <div class="form-group" ng-repeat="item in ratingTemplate.ratingBreakdowns">
+                        <div class="col-md-2 control-label">
+                            {{item.roleParameter.parameterName}}
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="item.score" class="form-control hidden" />
+
+
+
+                            <div>
+                                <!--<span class="label label-info">Star Rating: Read/Write</span>-->
+
+                                <div star-rating rating="item.score" read-only="false" max-rating="10"></div>
+                                <div>
+                                    <span class="label label-primary">{{getScoreText(item.score)}}</span>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2  control-label">
+                            Your comments:
+                        </div>
+
+                        <div class="col-md-10">
+                            <textarea ng-model="ratingTemplate.comments" class="form-control" />
+                        </div>
+                    </div>
+
+
+                    <div class="alert alert-danger text-center" role="alert" ng-show="ratingError!=''">
+                        {{ratingError}}
+                    </div>
+
+
+                    <div class="row form-group">
+                        <button class="btn btn-primary btn-sm pull-right" ng-click="submitLandlordReview(ratingTemplate)" style="margin: 5px">Submit</button>
+
+                        <button class="btn btn-warning btn-sm pull-right row" ng-click="cancel()" style="margin: 5px">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <!--<div >
+
+        <div ng-repeat="tenant in myTenants" class="rcorneredcards"></div>
+
+
+    </div>-->
+</div>

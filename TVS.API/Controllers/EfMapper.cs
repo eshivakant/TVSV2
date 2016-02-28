@@ -18,6 +18,7 @@ namespace TVS.API.Controllers
                 cfg.CreateMap<AddressOccupation, AddressOccupation>().ForMember(a => a.Address, b => b.Ignore()).ForMember(a => a.Person, b => b.Ignore());
                 cfg.CreateMap<PersonAttribute, PersonAttribute>().ForMember(a => a.Person, b => b.Ignore()).ForMember(a => a.RoleAttribute, b => b.Ignore());
                 cfg.CreateMap<RoleAttribute, RoleAttribute>().ForMember(a => a.PersonAttributes, b => b.Ignore());
+                cfg.CreateMap<RoleParameter, RoleParameter>().ForMember(a => a.RatingBreakdowns, b => b.Ignore());
             });
 
              _mapper = config.CreateMapper();

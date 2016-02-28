@@ -101,60 +101,60 @@ app.config(function ($routeProvider) {
 
     //landlord dashboard
     $routeProvider.when("/myratings", {
-        controller: "myRatingsCtrl",
+        controller: "landlordsMyRatingsCtrl",
         templateUrl: "/app/views/dashboard/landlord/myratings.html"
     });
 
     $routeProvider.when("/myreviews", {
-        controller: "myReviewsCtrl",
+        controller: "landlordsMyReviewsCtrl",
         templateUrl: "/app/views/dashboard/landlord/myreviews.html"
     });
 
 
     $routeProvider.when("/policeverification", {
-        controller: "policeVerificationCtrl",
+        controller: "landlordsPoliceVerificationCtrl",
         templateUrl: "/app/views/dashboard/landlord/policeverification.html"
     });
 
 
     $routeProvider.when("/profile", {
-        controller: "profileCtrl",
+        controller: "landlordsProfileCtrl",
         templateUrl: "/app/views/dashboard/landlord/xxxx.html"
     });
 
 
     $routeProvider.when("/ratetenant", {
-        controller: "rateTenantCtrl",
+        controller: "landlordsRateTenantCtrl",
         templateUrl: "/app/views/dashboard/landlord/ratetenant.html"
     });
 
 
     $routeProvider.when("/reportnewtenant", {
-        controller: "reportnewtenantCtrl",
+        controller: "landlordsReportNewTenantCtrl",
         templateUrl: "/app/views/dashboard/landlord/reportnewtenant.html"
     });
 
 
     $routeProvider.when("/score", {
-        controller: "scoreCtrl",
+        controller: "landlordsScoreCtrl",
         templateUrl: "/app/views/dashboard/landlord/score.html"
     });
 
 
     $routeProvider.when("/search", {
-        controller: "searchCtrl",
+        controller: "landlordsSearchCtrl",
         templateUrl: "/app/views/dashboard/landlord/search.html"
     });
 
 
     $routeProvider.when("/tenantcheck", {
-        controller: "tenantCheckCtrl",
+        controller: "landlordsTenantCheckCtrl",
         templateUrl: "/app/views/dashboard/landlord/tenantcheck.html"
     });
 
 
     $routeProvider.when("/tenanthistory", {
-        controller: "tenanthistoryCtrl",
+        controller: "landlordsTenantHistoryCtrl",
         templateUrl: "/app/views/dashboard/landlord/tenanthistory.html"
     });
 
@@ -167,61 +167,61 @@ app.config(function ($routeProvider) {
   
     //tenant dashboard
     $routeProvider.when("/myratings", {
-        controller: "myRatingsCtrl",
+        controller: "tenantsMyRatingsCtrl",
         templateUrl: "/app/views/dashboard/tenant/myratings.html"
     });
 
     $routeProvider.when("/myreviews", {
-        controller: "myReviewsCtrl",
+        controller: "tenantsMyReviewsCtrl",
         templateUrl: "/app/views/dashboard/tenant/myreviews.html"
     });
 
 
     $routeProvider.when("/policeverification", {
-        controller: "policeVerificationCtrl",
+        controller: "tenantsPoliceVerificationCtrl",
         templateUrl: "/app/views/dashboard/tenant/policeverification.html"
     });
 
 
     $routeProvider.when("/profile", {
-        controller: "profileCtrl",
+        controller: "tenantsProfileCtrl",
         templateUrl: "/app/views/dashboard/tenant/profile.html"
     });
 
 
     $routeProvider.when("/ratelandlord", {
-        controller: "rateLandlordCtrl",
+        controller: "tenantsRateLandlordCtrl",
         templateUrl: "/app/views/dashboard/tenant/ratelandlord.html"
     });
 
 
     $routeProvider.when("/reportmove", {
-        controller: "reportMoveCtrl",
+        controller: "tenantsReportMoveCtrl",
         templateUrl: "/app/views/dashboard/tenant/reportmove.html"
     });
 
 
     $routeProvider.when("/score", {
-        controller: "scoreCtrl",
+        controller: "tenantsScoreCtrl",
         templateUrl: "/app/views/dashboard/tenant/score.html"
     });
 
 
 
     $routeProvider.when("/search", {
-        controller: "searchCtrl",
+        controller: "tenantsSearchCtrl",
         templateUrl: "/app/views/dashboard/tenant/search.html"
     });
 
 
     $routeProvider.when("/addresscheck", {
-        controller: "addressCheckCtrl",
+        controller: "tenantsAddressCheckCtrl",
         templateUrl: "/app/views/dashboard/tenant/addresscheck.html"
     });
 
 
     $routeProvider.when("/landlordhistory", {
-        controller: "landlordHistoryCtrl",
+        controller: "tenantsLandlordHistoryCtrl",
         templateUrl: "/app/views/dashboard/tenant/landlordhistory.html"
     });
 
@@ -251,3 +251,14 @@ app.run(['authService', function (authService) {
     authService.fillAuthData();
 }]);
 
+
+
+app.filter('ifEmpty', function () {
+    return function (input, defaultValue) {
+        if (angular.isUndefined(input) || input === null || input === '') {
+            return defaultValue;
+        }
+
+        return input;
+    }
+});
