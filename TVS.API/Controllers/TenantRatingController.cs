@@ -43,6 +43,16 @@ namespace TVS.API.Controllers
             var myLandlords = myAddressesWhereILived.SelectMany(a => a.AddressOwnerships.Select(o => o.Person));
             List<Person> people = await myLandlords.Include(t => t.PersonAttributes).ToListAsync();
 
+            people = people.Select(EfMapper.Map).ToList();
+
+            foreach (var person in people)
+            {
+                var per = myLandlords.First(pp => pp.Id == person.Id);
+                var myAddress = per.AddressOwnerships.First(a => myAddressesWhereILived.Any(ad => ad.Id == a.AddressId));
+                person.AddressOwnerships.Add(new AddressOwnership { Address = EfMapper.Map(myAddress.Address), OwnedFrom = myAddress.OwnedFrom, OwnedTo= myAddress.OwnedTo});
+            }
+
+
             return Ok(people);
         }
 

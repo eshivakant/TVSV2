@@ -43,6 +43,16 @@ namespace TVS.API.Controllers
             var peopleWhoLivedAtMyAddress =  myAddresses.SelectMany(a => a.AddressOccupations.Select(o=>o.Person));
             var people = await peopleWhoLivedAtMyAddress.Include(t => t.PersonAttributes).ToListAsync();
 
+            people = people.Select(EfMapper.Map).ToList();
+
+            foreach (var person in people)
+            {
+                var per = peopleWhoLivedAtMyAddress.First(pp => pp.Id == person.Id);
+                var myAddress = per.AddressOccupations.First(a => myAddresses.Any(ad => ad.Id == a.AddressId));
+                person.AddressOccupations.Add(new AddressOccupation {Address = EfMapper.Map(myAddress.Address),OccupiedFrom = myAddress.OccupiedFrom, OccupiedTo = myAddress.OccupiedTo});
+                
+            }
+
             return Ok(people);
         }
 
