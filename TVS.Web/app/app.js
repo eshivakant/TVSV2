@@ -135,13 +135,13 @@ app.config(function ($routeProvider) {
     });
 
 
-    $routeProvider.when("/score", {
+    $routeProvider.when("/lscore", {
         controller: "landlordsScoreCtrl",
         templateUrl: "/app/views/dashboard/landlord/score.html"
     });
 
 
-    $routeProvider.when("/search", {
+    $routeProvider.when("/lsearch", {
         controller: "landlordsSearchCtrl",
         templateUrl: "/app/views/dashboard/landlord/search.html"
     });
@@ -201,14 +201,14 @@ app.config(function ($routeProvider) {
     });
 
 
-    $routeProvider.when("/score", {
+    $routeProvider.when("/tscore", {
         controller: "tenantsScoreCtrl",
         templateUrl: "/app/views/dashboard/tenant/score.html"
     });
 
 
 
-    $routeProvider.when("/search", {
+    $routeProvider.when("/tsearch", {
         controller: "tenantsSearchCtrl",
         templateUrl: "/app/views/dashboard/tenant/search.html"
     });

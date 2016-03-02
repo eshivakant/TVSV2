@@ -70,7 +70,9 @@ namespace TVS.API.Controllers
 
             if (queryResult.Count() > 100) return null; //do not return more than 100 records
 
-            return Ok(await queryResult.ToListAsync());
+             var people = await queryResult.ToListAsync();
+            people = people.Select(EfMapper.Map).ToList();
+            return Ok(people);
 
         }
     }

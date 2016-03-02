@@ -1,1 +1,214 @@
-﻿<div class="h1">Search Tenants</div>
+﻿
+<link href="../../../../content/css/infocard.css" rel="stylesheet"/>
+
+<div class="container">
+
+    <div class="row setup-content" id="tstep-1">
+        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px" ng-show="hideSearchPane==false">
+            <div class="h1">Search Tenants..</div>
+            <hr/>
+            <div>
+
+                <div class="alert alert-info text-center" role="alert">To Search please provide whatever details you have. For privacy reasons we do not provide general search.</div>
+                <hr/>
+
+                <div class="form-horizontal">
+
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Initial
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.initial" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            First Name
+                        </div>
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.firstName" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Middle Name
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.middleName" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Last Name
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.lastName" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Date Of Birth
+                        </div>
+                        <div class="col-md-10">
+                            <input jqdatepicker class="form-control" ng-model="newPerson.dateOfBirth"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Place Of Birth
+                        </div>
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.placeOfBirth" class="form-control"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Identification Mark
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.identificationMark" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            PAN Card Number
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.pan" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Adhaar Card Number
+                        </div>
+
+                        <div class="col-md-10">
+                            <input ng-model="newPerson.adhaarCard" class="form-control"/>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group" ng-repeat="attr in newPerson.personAttributes">
+                        <div class="col-md-2 control-label">
+                            {{attr.roleAttribute.description}}
+                        </div>
+
+
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='string'">
+                            <input ng-model="attr.stringValue" class="form-control"/>
+                        </div>
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='int'">
+                            <input ng-model="attr.intValue" class="form-control"/>
+                        </div>
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='float'">
+                            <input ng-model="attr.floatValue" class="form-control"/>
+                        </div>
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='date'">
+                            <input jqdatepicker class="form-control" ng-model="attr.dateValue"/>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <button class="btn btn-primary btn-sm pull-right" ng-click="search()">Search</button>
+
+
+                </div>
+            </div>
+        </div>
+    <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px" ng-show="hideSearchPane==true">
+
+        <div class="row layout-margin-md" style="margin-bottom: 10px">
+            <button class="btn btn-warning btn-sm pull-right" ng-click="showPanel()">Modify Search..</button>
+        </div>
+
+
+
+            <div class="row layout-margin-md">
+                <div class="[ col-sm-6 col-md-3 col-lg-2]" ng-repeat="person in searchResult">
+                    <div class="[ info-card ]" ng-click="startRating(person)">
+                        <img style="width: 100%" src="https://www.icsi.berkeley.edu/icsi/sites/default/files/staff_photos/generic_avatar.jpg" />
+                        <div class="[ info-card-details ] animate" style="cursor: pointer">
+                            <div class="[ info-card-header ]">
+                                <h1> {{fullName(person)}} </h1>
+                                <h3>Lived at [--hidden--] from [--hidden--] to [--hidden--] </h3>
+                            </div>
+                            <div class="[ info-card-detail ]">
+                                <!-- Description -->
+                                <p>
+                                    Born at {{tenant.placeOfBirth| ifEmpty:'NA'}} on {{tenant.dateOfBirth| date:'mediumDate' | ifEmpty:'NA'}} . PAN #{{tenant.pan| ifEmpty:'NA'}} and Adhaar #{{tenant.adhaarCard| ifEmpty:'NA'}}.
+
+
+
+                                    <span ng-repeat="attr in tenant.personAttributes">
+
+                                        {{attr.roleAttribute.description}} is
+
+
+                                        <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='string'">
+                                            {{attr.stringValue}}
+                                        </span>
+                                        <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='int'">
+                                            {{attr.intValue}}
+                                        </span>
+                                        <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='float'">
+                                            {{attr.floatValue}}
+                                        </span>
+                                        <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='date'">
+                                            {{attr.dateValue}}
+                                        </span>
+
+                                    </span>
+
+
+
+                                </p>
+                                <div class="social">
+                                    <a href="https://www.facebook.com/rem.mcintosh" class="[ social-icon facebook ] animate"><span class="fa fa-facebook"></span></a>
+
+                                    <a href="https://twitter.com/Mouse0270" class="[ social-icon twitter ] animate"><span class="fa fa-twitter"></span></a>
+
+                                    <a href="https://github.com/mouse0270" class="[ social-icon github ] animate"><span class="fa fa-github-alt"></span></a>
+
+                                    <a href="https://plus.google.com/u/0/115077481218689845626/posts" class="[ social-icon google-plus ] animate"><span class="fa fa-google-plus"></span></a>
+
+                                    <a href="www.linkedin.com/in/remcintosh/" class="[ social-icon linkedin ] animate"><span class="fa fa-linkedin"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
