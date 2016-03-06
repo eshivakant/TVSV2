@@ -60,7 +60,7 @@ namespace TVS.API.Controllers
         [Route("GetRatingTemplate")]
         [AcceptVerbs("GET")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetRatingTemplate(string hash)
+        public async Task<IHttpActionResult> GetRatingTemplate(long addressId)
         {
             var landlordRole = await _context.Roles.FirstAsync(f => f.Name == "Landlord");
             var landlordRoleRatingParams = await _context.RoleParameters.Where(r => r.RoleId == landlordRole.Id).ToListAsync();
@@ -74,7 +74,20 @@ namespace TVS.API.Controllers
                 rating.RoleParameterId = roleParam.Id;
                 ratings.Add(rating);
             }
-            return Ok(new PersonRating { RatingBreakdowns = ratings, DateCreated = DateTime.Today, DateUpdated = DateTime.Today });
+            var addressString = _context.Addresses.First(a => a.Id == addressId).AddressLine1;
+
+            return Ok(
+                new PersonRatingViewModel
+                {
+                    PersonRating = new PersonRating
+                    {
+                        RatingBreakdowns = ratings,
+                        DateCreated = DateTime.Today,
+                        DateUpdated = DateTime.Today,
+                        AddressId = addressId
+                    },
+                    Address = addressString
+                });
         }
 
 

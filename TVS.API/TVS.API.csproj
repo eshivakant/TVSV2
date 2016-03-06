@@ -169,6 +169,7 @@
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\DomainAspnetPersonMap.cs" />
+    <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\PersonAttribute.cs" />
     <Compile Include="Entities\PersonRating.cs" />
@@ -180,6 +181,14 @@
     <Compile Include="Migrations\201602221213223_AppDbContext.cs" />
     <Compile Include="Migrations\201602221213223_AppDbContext.Designer.cs">
       <DependentUpon>201602221213223_AppDbContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603061438196_AppDbContext1.cs" />
+    <Compile Include="Migrations\201603061438196_AppDbContext1.Designer.cs">
+      <DependentUpon>201603061438196_AppDbContext1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603061513310_AppDbContext2.cs" />
+    <Compile Include="Migrations\201603061513310_AppDbContext2.Designer.cs">
+      <DependentUpon>201603061513310_AppDbContext2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddressSearchModel.cs" />
@@ -215,6 +224,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602221213223_AppDbContext.resx">
       <DependentUpon>201602221213223_AppDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603061438196_AppDbContext1.resx">
+      <DependentUpon>201603061438196_AppDbContext1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603061513310_AppDbContext2.resx">
+      <DependentUpon>201603061513310_AppDbContext2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

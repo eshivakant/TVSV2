@@ -4,9 +4,10 @@ app.controller('tenantsRateLandlordCtrl', ['$scope', '$http', '$location', '$q',
     $scope.myLandlords = {};
     $scope.selectedLandlord = {};
     $scope.ratingTemplate = {};
+    $scope.ratingTemplateVm = {};
     $scope.landlordSelected = false;
-    $scope.ratingTemplate = {};
     $scope.ratingError = "";
+    $scope.selectedAddressString = "";
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
 
@@ -19,9 +20,11 @@ app.controller('tenantsRateLandlordCtrl', ['$scope', '$http', '$location', '$q',
 
 
     $scope.getTemplate = function () {
-        $http.get(serviceBase + '/Api/Rating/Tenant/GetRatingTemplate' + '?hash=' + Math.random())
+        $http.get(serviceBase + '/Api/Rating/Tenant/GetRatingTemplate' + '?addressId=' + $scope.selectedLandlord.addressOwnerships[0].address.id)
             .then(function (response) {
-                $scope.ratingTemplate = response.data;
+                $scope.ratingTemplateVm = response.data;
+                $scope.ratingTemplate = $scope.ratingTemplateVm.personRating;
+                $scope.selectedAddressString = $scope.ratingTemplateVm.address;
             }, function (response) {
                 $scope.ratingError = response;
             });
@@ -53,8 +56,8 @@ app.controller('tenantsRateLandlordCtrl', ['$scope', '$http', '$location', '$q',
 
 
     $scope.startRating = function (landlord) {
-        $scope.getTemplate();
         $scope.selectedLandlord = landlord;
+        $scope.getTemplate();
         $scope.landlordSelected = true;
     };
 

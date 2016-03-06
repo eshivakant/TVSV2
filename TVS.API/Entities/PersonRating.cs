@@ -17,6 +17,8 @@ namespace TVS.API.Entities
 
         public long PersonId { get; set; }
 
+        public long AddressId { get; set; }
+
         public long ProviderId { get; set; }
 
         public int AverageScore { get; set; }
@@ -39,5 +41,8 @@ namespace TVS.API.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatingBreakdown> RatingBreakdowns { get; set; }
+
+        public virtual Address Address { get; set; }
+
     }
 }
