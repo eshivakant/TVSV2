@@ -124,6 +124,8 @@
     <Content Include="app\views\Dashboard\Landlord\tenantcheck.js" />
     <Content Include="app\views\Dashboard\Landlord\tenanthistory.html" />
     <Content Include="app\views\Dashboard\Landlord\tenanthistory.js" />
+    <Content Include="app\views\Dashboard\Tenant\addressprofile.html" />
+    <Content Include="app\views\Dashboard\Tenant\addressprofile.js" />
     <Content Include="app\views\Dashboard\Tenant\addresscheck.html" />
     <Content Include="app\views\Dashboard\Tenant\addresscheck.js" />
     <Content Include="app\views\Dashboard\Tenant\home.html" />
@@ -163,6 +165,7 @@
     <Content Include="app\views\signup.html" />
     <Content Include="app\views\tokens.html" />
     <Content Include="authComplete.html" />
+    <Content Include="content\css\angucomplete-alt.css" />
     <Content Include="content\css\animate.css" />
     <Content Include="content\css\font-awesome.min.css" />
     <Content Include="content\css\infocard.css" />
@@ -178,6 +181,7 @@
     <Content Include="content\fonts\fontawesome-webfont.ttf" />
     <Content Include="content\fonts\fontawesome-webfont.woff" />
     <Content Include="content\fonts\FontAwesome.otf" />
+    <Content Include="content\Images\house.png" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\ngauthenticationweb.pubxml" />
     <None Include="Web.Debug.config">
@@ -194,6 +198,7 @@
     <Content Include="content\Images\landlord.png" />
     <Content Include="content\Images\tenant.png" />
     <Content Include="index.html" />
+    <Content Include="scripts\angucomplete-alt.js" />
     <Content Include="scripts\angular-local-storage.min.js" />
     <Content Include="scripts\authComplete.js" />
     <Content Include="scripts\datetime.js" />

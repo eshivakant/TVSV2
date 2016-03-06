@@ -66,7 +66,7 @@ namespace TVS.API.Controllers
                 queryResult = queryResult.Where(p => p.DateOfBirth.Value > person.DateOfBirth.Value.AddDays(-2) && p.DateOfBirth < person.DateOfBirth.Value.AddDays(2));
             }
 
-            queryResult = queryResult.Where(q => q.AddressOwnerships.Any());
+            //queryResult = queryResult.Where(q => q.AddressOwnerships.Any()); //todo: filter down
 
             if (queryResult.Count() > 100) return null; //do not return more than 100 records
 

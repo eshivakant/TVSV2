@@ -7,15 +7,15 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
 
-    $http.get(serviceBase + '/Api/Tenant/Template' + '?hash=' + Math.random()) //to avoid caching
+    $http.get(serviceBase + '/Api/Tenant/Template' + '?hash=100') //to avoid caching
         .then(function (response) {
             $scope.newPerson = response.data;
-            $scope.getLandlordTemplate($q).then(function (result) {
-                var landlordTemplate = result;
-                for (var i = 0; i < $scope.newPerson.addressOccupations.length; i++) {
-                    $scope.newPerson.addressOccupations[i].previousLandlord = JSON.parse(JSON.stringify(landlordTemplate));
-                }
-            });
+            //$scope.getLandlordTemplate($q).then(function (result) {
+            //    var landlordTemplate = result;
+            //    for (var i = 0; i < $scope.newPerson.addressOccupations.length; i++) {
+            //        $scope.newPerson.addressOccupations[i].previousLandlord = JSON.parse(JSON.stringify(landlordTemplate));
+            //    }
+            //});
         });
 
     $scope.search = function() {
@@ -25,6 +25,10 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
             });
 
         $scope.hideSearchPane = true;
+    }
+
+    $scope.showDetails=function(person) {
+        $location.path('/tprofile/id/'+ person.id);
     }
 
     $scope.showPanel = function () {

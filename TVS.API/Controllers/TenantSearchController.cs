@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Owin.Security;
 using TVS.API.Entities;
+using TVS.API.Models;
 
 namespace TVS.API.Controllers
 {
@@ -29,49 +30,29 @@ namespace TVS.API.Controllers
 
         [HttpPost]
         [Route("Search")]
-        public async Task<IHttpActionResult> Search([FromBody]Person person)
+        public async Task<IHttpActionResult> Search([FromBody]AddressSearchModel searchdata)
         {
-            var queryResult = _context.People.AsQueryable();
+            var queryResult = _context.Addresses.AsQueryable();
 
-            if (!string.IsNullOrEmpty(person.Initial))
-            {
-                queryResult = queryResult.Where(p => p.Initial == person.Initial);
-            }
-            if (!string.IsNullOrEmpty(person.FirstName))
-            {
-                queryResult = queryResult.Where(p => p.FirstName == person.FirstName);
-            }
-            if (!string.IsNullOrEmpty(person.MiddleName))
-            {
-                queryResult = queryResult.Where(p => p.MiddleName == person.MiddleName);
-            }
-            if (!string.IsNullOrEmpty(person.LastName))
-            {
-                queryResult = queryResult.Where(p => p.LastName == person.LastName);
-            }
-            if (!string.IsNullOrEmpty(person.PAN))
-            {
-                queryResult = queryResult.Where(p => p.PAN == person.PAN);
-            }
-            if (!string.IsNullOrEmpty(person.AdhaarCard))
-            {
-                queryResult = queryResult.Where(p => p.AdhaarCard == person.AdhaarCard);
-            }
-            if (!string.IsNullOrEmpty(person.PlaceOfBirth))
-            {
-                queryResult = queryResult.Where(p => p.PlaceOfBirth == person.PlaceOfBirth);
-            }
-            if (person.DateOfBirth != null && person.DateOfBirth < DateTime.Today.AddYears(-16)) //ignore this for young
-            {
-                queryResult = queryResult.Where(p => p.DateOfBirth.Value > person.DateOfBirth.Value.AddDays(-2) && p.DateOfBirth.Value < person.DateOfBirth.Value.AddDays(2));
-            }
+            queryResult = queryResult.Where(q => q.State.ToLower() == searchdata.State.ToLower());
+            queryResult = queryResult.Where(q => q.City.ToLower() == searchdata.City.ToLower());
 
-            queryResult = queryResult.Where(q => q.AddressOccupations.Any());
 
-            if (queryResult.Count() > 100) return null; //do not return more than 100 records
+            //todo: do fuzzy search on locality and address
 
-            return Ok(await queryResult.ToListAsync());
+            if(!string.IsNullOrWhiteSpace(searchdata.OwnersLastName))
+                queryResult = queryResult.Where(q => q.AddressOwnerships.Any(a => a.Person.LastName.ToLower() == searchdata.OwnersLastName.ToLower()));
 
+            if (!string.IsNullOrWhiteSpace(searchdata.OwnersFirstName))
+                queryResult =queryResult.Where(q => q.AddressOwnerships.Any(a => a.Person.FirstName.ToLower() == searchdata.OwnersFirstName.ToLower()));
+
+            var result = await queryResult.ToListAsync();
+
+            result = result.Select(EfMapper.Map).ToList();
+            
+            return Ok(result);
+
+            //await queryResult.ToListAsync()
         }
     }
 }

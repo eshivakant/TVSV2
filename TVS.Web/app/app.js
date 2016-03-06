@@ -1,5 +1,5 @@
 ﻿
-var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt']);
 
 app.config(function ($routeProvider) {
     $routeProvider.when("/home", {
@@ -117,9 +117,14 @@ app.config(function ($routeProvider) {
     });
 
 
-    $routeProvider.when("/profile", {
+    $routeProvider.when("/lprofile", {
         controller: "landlordsProfileCtrl",
-        templateUrl: "/app/views/dashboard/landlord/xxxx.html"
+        templateUrl: "/app/views/dashboard/landlord/profile.html"
+    });
+
+    $routeProvider.when("/lprofile/:personId", {
+        controller: "landlordsProfileCtrl",
+        templateUrl: "/app/views/dashboard/landlord/profile.html"
     });
 
 
@@ -171,6 +176,12 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/dashboard/tenant/myratings.html"
     });
 
+    $routeProvider.when("/addressprofile/id/:addressId", {
+        controller: "addressprofileCtrl",
+        templateUrl: "/app/views/dashboard/tenant/addressprofile.html"
+    });
+
+
     $routeProvider.when("/myreviews", {
         controller: "tenantsMyReviewsCtrl",
         templateUrl: "/app/views/dashboard/tenant/myreviews.html"
@@ -183,7 +194,12 @@ app.config(function ($routeProvider) {
     });
 
 
-    $routeProvider.when("/profile", {
+    $routeProvider.when("/tprofile", {
+        controller: "tenantsProfileCtrl",
+        templateUrl: "/app/views/dashboard/tenant/profile.html"
+    });
+
+    $routeProvider.when("/tprofile/id/:personId", {
         controller: "tenantsProfileCtrl",
         templateUrl: "/app/views/dashboard/tenant/profile.html"
     });
@@ -262,3 +278,4 @@ app.filter('ifEmpty', function () {
         return input;
     }
 });
+

@@ -39,7 +39,9 @@ app.controller('signUpTenantController', [
             var newOwnership = new function () {
                 this.ownedFrom = new Date(ownedFrom);
                 this.ownedTo = new Date(ownedTo);
-                this.address = address;
+                //this.address = address;
+                this.addressId = address.id;
+
             }
             person.addressOwnerships = [];
             person.addressOwnerships.push(newOwnership);

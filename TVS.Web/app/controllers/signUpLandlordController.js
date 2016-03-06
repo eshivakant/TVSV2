@@ -41,7 +41,8 @@ app.controller('signUpLandlordController', [
                 this.occupiedFrom = new Date(occupiedFrom);
                 this.occupiedTo = new Date(occupiedTo);
                 this.rent = rent;
-                this.address = address;
+                //this.address = address;
+                this.addressId = address.id;
             }
             person.addressOccupations = [];
             person.addressOccupations.push(newOccupation);

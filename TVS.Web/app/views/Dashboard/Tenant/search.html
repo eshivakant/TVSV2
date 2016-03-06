@@ -1,1 +1,189 @@
-﻿<div class="h1">Search Tenants</div>
+﻿
+<link href="../../../../content/css/infocard.css" rel="stylesheet" />
+<link href="../../../../content/css/angucomplete-alt.css" rel="stylesheet" />
+
+
+<div class="container">
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row setup-content" id="tstep-1">
+        <div class="col-md-12" style="margin: 15px" ng-show="hideSearchPane!=true">
+
+
+
+
+            <div class="h1">Search Address..</div>
+            <hr />
+
+            <div class="col-md-6">
+
+                <div class="alert alert-info text-center" role="alert">To Search please provide whatever details you have. For privacy reasons we do not provide general search.</div>
+
+                <div class="hidden-md hidden-lg" style="height: 100%">
+                    <iframe frameborder="0" style="border: 0; height: 200px" width="100%"
+                            ng-src="{{mapUrl}}" allowfullscreen></iframe>
+                </div>
+
+                <hr />
+
+                <div class="form-horizontal">
+
+
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            State
+                        </div>
+
+                        <div class="col-md-8">
+                            <div angucomplete-alt id="ex1"
+                                 placeholder="Search State"
+                                 maxlength="50"
+                                 pause="100"
+                                 selected-object="selectedStateFn"
+                                 local-data="states"
+                                 search-fields="state"
+                                 title-field="state"
+                                 minlength="1"
+                                 input-class="form-control form-control-small"
+                                 match-class="highlight"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            City
+                        </div>
+                        <div class="col-md-8">
+                            <div angucomplete-alt id="ex1"
+                                 placeholder="Search City"
+                                 maxlength="50"
+                                 pause="100"
+                                 selected-object="selectedCityFn"
+                                 local-data="cities"
+                                 local-search="citySearch"
+                                 search-fields="city"
+                                 title-field="city"
+                                 minlength="1"
+                                 input-class="form-control form-control-small"
+                                 match-class="highlight"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            Locality \ Colony
+                        </div>
+
+                        <div class="col-md-8">
+                            <input ng-model="locality" ng-model-options="{debounce: {'default': 300, 'blur': 0}}" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            House Address
+                        </div>
+
+                        <div class="col-md-8">
+                            <input ng-model="address" ng-model-options="{debounce: {'default': 300, 'blur': 0}}" class="form-control">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            Owner's Last Name (optional)
+                        </div>
+
+                        <div class="col-md-8">
+                            <input ng-model="ownersLastName" class="form-control" />
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-4 control-label">
+                            Owner's First Name (optional)
+                        </div>
+
+                        <div class="col-md-8">
+                            <input ng-model="ownersFirstName" class="form-control" />
+                        </div>
+                    </div>
+
+
+
+
+                    <button class="btn btn-primary btn-sm pull-right" ng-click="search()">Search</button>
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="col-md-6 hidden-sm hidden-xs" style="height: 100%">
+                <iframe frameborder="0" style="border: 0; height: 400px" width="100%"
+                        ng-src="{{mapUrl}}" allowfullscreen></iframe>
+
+                <div class="alert info-card">This map is shown just for reference. This can help you drill down the exact location you want to search for. </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-xs-11 col-sm-11 col-md-8 col-lg-10" style="margin: 15px" ng-show="hideSearchPane==true">
+
+            <div class="row layout-margin-md" style="margin-bottom: 10px">
+                <button class="btn btn-warning btn-sm pull-right" ng-click="showPanel()">Modify Search..</button>
+            </div>
+
+
+
+            <div class="row layout-margin-md">
+                <div class="[ col-sm-6 col-md-3 col-lg-2]" ng-repeat="address in searchResult">
+                    <div class="[ info-card ]" ng-click="showDetails(address)">
+                        <img style="width: 100%" src="../../../../content/Images/house.png" />
+                        <div class="[ info-card-details ] animate" style="cursor: pointer">
+                            <div class="[ info-card-header ]">
+                                <h4> {{fullAddress(address)}} </h4>
+                            </div>
+                            <div class="[ info-card-detail ]">
+                                <!-- Description -->
+                                <p>
+                                    <button class="btn-sm btn-info">View Details</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+</div>
