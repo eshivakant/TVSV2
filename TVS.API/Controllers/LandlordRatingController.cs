@@ -95,6 +95,8 @@ namespace TVS.API.Controllers
         {
             try
             {
+                var myUser = await GetMyUserIdMappings();
+                personRating.ProviderId = myUser.PersonId;
                 foreach (var ratingBreakdown in personRating.RatingBreakdowns)
                 {
                     ratingBreakdown.RoleParameter = null; //don't re-insert

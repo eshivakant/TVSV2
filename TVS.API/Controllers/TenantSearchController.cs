@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Http;
@@ -54,5 +55,67 @@ namespace TVS.API.Controllers
 
             //await queryResult.ToListAsync()
         }
+
+        [Route("AddressProfile")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<IHttpActionResult> AddressProfile(long addressId)
+        {
+            //await Task.Yield();
+            var ratingsForThisAddress = await _context.PersonRatings.Where(r => r.AddressId == addressId).ToListAsync();
+            var result = new List<AddressRatingViewModel>();
+            foreach (var pr in ratingsForThisAddress)
+            {
+                var rating = new AddressRatingViewModel
+                {
+                    ScoreViewModels = pr.RatingBreakdowns.Select(
+                        b =>
+                            new ScoreViewModel
+                            {
+                                Parameter = b.RoleParameter.ParameterName,
+                                ParameterDesc = b.RoleParameter.Description,
+                                Score = b.Score
+                            }).ToList(),
+                    AddressId = addressId,
+                    ProviderId = pr.ProviderId,
+                    OwnerId = pr.PersonId,
+                    Comments = pr.Comments
+                };
+
+                result.Add(rating);
+            }
+
+            foreach (var rating in result)
+            {
+                rating.AddressString = _context.Addresses.First(a => a.Id == addressId).FullAddress;
+                if (rating.ProviderId != 0) rating.ProviderName = _context.People.First(p => p.Id == rating.ProviderId).FullName;
+                rating.OwnersName = _context.People.First(p => p.Id == rating.OwnerId).FullName;
+                rating.AggregateScore = rating.ScoreViewModels.Average(vm => vm.Score);
+            }
+
+            return Ok(result);
+        }
+    }
+
+
+    public class AddressRatingViewModel
+    {
+        public long OwnerId { get; set; }
+        public string OwnersName { get; set; }
+        public long ProviderId { get; set; }
+        public string ProviderName { get; set; }
+        public long AddressId { get; set; }
+        public string AddressString { get; set; }
+        public double AggregateScore { get; set; }
+        public string Comments { get; set; }
+        public List<ScoreViewModel> ScoreViewModels { get; set; }
+        
+    }
+
+    public class ScoreViewModel
+    {
+        public string Parameter { get; set; }
+        public string ParameterDesc { get; set; }
+        public int Score { get; set; }
     }
 }

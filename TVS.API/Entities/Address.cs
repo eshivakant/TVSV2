@@ -42,5 +42,8 @@ namespace TVS.API.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AddressOwnership> AddressOwnerships { get; set; }
+
+        public string FullAddress => ($"{AddressLine1}, {AddressLine2}, {AddressLine3}, {City}, {State}. Pin:{PostCode}")
+            .Replace("  ", "").Replace(" , ", ", ").Replace(",,", ",");
     }
 }

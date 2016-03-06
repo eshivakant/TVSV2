@@ -69,5 +69,9 @@ namespace TVS.API.Entities
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual IList<PersonRating> PersonRatings { get; set; }
+
+
+
+        public string FullName => ($"{Initial} {FirstName} {MiddleName} {LastName}").Replace("  ","");
     }
 }
