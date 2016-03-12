@@ -2,7 +2,8 @@
 app.controller('addressprofileCtrl', ['$scope', '$http', '$routeParams', '$location', '$q', 'ngAuthSettings', 'personData', function ($scope, $http, $routeParams, $location, $q, ngAuthSettings, personData) {
 
     $scope.addressRatings = [];
-    $scope.ratingCount=0;
+    $scope.ratingCount = 0;
+    var serviceBase = ngAuthSettings.apiServiceBaseUri;
 
     function init() {
         var addressId = $routeParams.addressId;

@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using TVS.API.Entities;
+using TVS.API.Models;
 
 namespace TVS.API.Controllers
 {
@@ -74,6 +75,19 @@ namespace TVS.API.Controllers
 
             return Ok(person);
         }
+
+
+        [Route("Profile/{id}")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Profile(long id)
+        {
+            var me = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
+            if (me == null) return null;
+            var person = await GetPerson(me.Id);
+            return Ok(person);
+        }
+
 
         //Save New Tenant
         [Route("Save")]
@@ -253,6 +267,73 @@ namespace TVS.API.Controllers
         }
 
 
+        [Route("MoveTemplate/{hash=hash}")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public IHttpActionResult MoveTemplate(string hash)
+        {
+            var model = new ReportMoveModel();
+            model.Address=new Address {AddressLine1 = "Test"};
+            model.Landlord = new Person() {LastName = "Test"};
+            return Ok(model);
+        }
+
+
+        //Update Tenant
+        [Route("SaveMove")]
+        [HttpPost]
+        public async Task<IHttpActionResult> SaveMove([FromBody] ReportMoveModel model)
+        {
+            var userIds = await GetMyUserIdMappings();
+
+            var newAddressOccupation = new AddressOccupation
+            {
+                Address = new Address
+                {
+                    AddressLine1 = model.Address?.AddressLine1,
+                    AddressLine2 = model.Address?.AddressLine2,
+                    AddressLine3 = model.Address?.AddressLine3,
+                    City = model.Address?.City,
+                    State = model.Address?.State,
+                    PostCode = model.Address?.PostCode
+                },
+
+                OccupiedFrom = model.MoveInDate ?? DateTime.Today,
+                OccupiedTo = model.MoveOutDate,
+                PersonId = userIds.PersonId
+            };
+
+            _context.AddressOccupations.Add(newAddressOccupation);
+            await _context.SaveChangesAsync();
+
+            if (model.Landlord?.FirstName != null)
+            {
+                var landLord = new Person
+                {
+                    Initial = model.Landlord.Initial,
+                    FirstName = model.Landlord.FirstName,
+                    MiddleName = model.Landlord.MiddleName,
+                    LastName = model.Landlord.LastName,
+                    PlaceOfBirth = "NA",
+                    DateOfBirth = TVS.API.Misc.Constants.SystemMinDate
+                };
+
+                landLord.AddressOwnerships.Add(new AddressOwnership
+                {
+                    AddressId = newAddressOccupation.AddressId,
+                    OwnedFrom = newAddressOccupation.OccupiedFrom,
+                    OwnedTo = newAddressOccupation.OccupiedTo
+                  
+                });
+
+                _context.People.Add(landLord);
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok();
+        }
+
+
 
         //Get Tenant(my object)
         [HttpGet]
@@ -282,9 +363,12 @@ namespace TVS.API.Controllers
 
 
         //Get Tenant by ID
-        [HttpGet]
-        [Route("GetTenant")]
-        public async Task<IHttpActionResult> GetById(long id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet][Route("GetTenant")]public async Task<IHttpActionResult> GetById(long id)
         {
             try
             {

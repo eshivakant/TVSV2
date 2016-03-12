@@ -76,6 +76,19 @@ namespace TVS.API.Controllers
             return Ok(person);
         }
 
+        [Route("Profile/{id}")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<IHttpActionResult> Profile(long id)
+        {
+            var me = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
+            if (me == null) return null;
+            var person = await GetPerson(me.Id);
+            return Ok(person);
+        }
+
+
+
         //Save New Landlord
         [Route("Save")]
         [HttpPost]

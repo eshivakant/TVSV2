@@ -191,9 +191,11 @@
       <DependentUpon>201603061513310_AppDbContext2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Misc\Constants.cs" />
     <Compile Include="Models\AddressSearchModel.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ExternalLoginModels.cs" />
+    <Compile Include="Models\ReportMoveModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
