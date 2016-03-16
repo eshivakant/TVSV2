@@ -5,11 +5,14 @@ app.controller('tenantsSearchCtrl', [
 
         $scope.hideSearchPane = false;
 
+        $scope.stateText = '';
+        $scope.cityText = '';
+
         $scope.search = function () {
 
             var searchData = {
-                state: $scope.selectedState.state,
-                city: $scope.selectedCity.city,
+                state: $scope.stateText,
+                city: $scope.cityText,
                 locality: $scope.locality,
                 homeAddress: $scope.address,
                 ownersLastName: $scope.ownersLastName,
@@ -36,7 +39,7 @@ app.controller('tenantsSearchCtrl', [
             var add = address.addressLine1 + ', ' + address.addressLine2 + ', ' + address.addressLine3 + ', ' + address.city + ', ' + address.state;
             if (address.postCode != undefined && address.postCode != null && address.postCode!='') add = add + ', ' + address.postCode;
             add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
-            return add
+            return add;
         }
 
         $scope.showDetails=function(address) {

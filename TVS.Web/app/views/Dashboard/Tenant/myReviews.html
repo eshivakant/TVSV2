@@ -1,2 +1,79 @@
-﻿<!--//reviews done by me-->
-<div class="h1">My Reviews</div>
+﻿<style>
+    /** blockquote styles **/
+    .bq2 {
+        width: 100%;
+        overflow: hidden;
+        border: 1px solid #dde5ed;
+        background: #f8fafd;
+        color: #758fa3;
+    }
+
+        .bq2 .source {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 13px;
+            text-shadow: 0px 1px 0px #f8fafb;
+            padding: 6px 11px;
+            background: #eaeff5;
+            border-top: 1px solid #f4f7fa;
+            border-bottom: 1px solid #dde5ed;
+        }
+
+        .bq2 p {
+            line-height: 19px;
+            margin-bottom: 10px;
+            font-style: italic;
+            font-size: 13px;
+            padding-left: 12px;
+        }
+</style>
+
+<div class="container">
+    <div class="h1">My Reviews</div>
+
+    <h3>You have posted {{ratingCount}} reviews(s)</h3>
+    <hr />
+
+    <div ng-repeat="rating in addressRatings">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <div class="h3">{{rating.ownersName}}</div>
+                <div class="h4">Landlord of {{rating.addressString}}</div>
+
+                <div star-rating rating="rating.aggregateScore" read-only="true" max-rating="10"></div>
+                <div style="vertical-align: middle">
+                    Aggregate Score: <span class="label label-primary">{{getScoreText(rating.aggregateScore)}}</span>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="col-sm-12" ng-repeat="score in rating.scoreViewModels">
+                    <div style="margin: 10px;">
+                        <div class="col-sm-3">{{score.parameter}}</div>
+                        <div class="col-sm-7">
+                            <span class="label label-primary">{{getScoreText(score.score)}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="margin: 5px">
+                <blockquote class="bq2">
+                    <span class="source">-{{rating.providerName}}, "Lived in {{rating.addressString}}"</span>
+                    <p>{{rating.comments|ifEmpty:"no comments left by the tenant"}}</p>
+                </blockquote>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>

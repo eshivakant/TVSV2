@@ -23,4 +23,13 @@ app.controller('tenantsProfileCtrl', ['$scope', '$http', '$location', '$routePar
 
     init();
 
+
+    $scope.fullAddress = function (address) {
+        var add = address.addressLine1 + ', ' + address.addressLine2 + ', ' + address.addressLine3 + ', ' + address.city + ', ' + address.state;
+        if (address.postCode != undefined && address.postCode != null && address.postCode != '') add = add + ', ' + address.postCode;
+        add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
+        return add;
+    }
+
+
 }]);

@@ -45,6 +45,7 @@ app.controller('tenantsRateLandlordCtrl', ['$scope', '$http', '$location', '$q',
     };
 
     $scope.fullName = function (person) {
+        if (person.middleName == undefined)person.middleName = "";
         var name = person.initial + " " + person.firstName + " " + person.middleName + " " + person.lastName;
         return name.replace("  ", " ");
     }

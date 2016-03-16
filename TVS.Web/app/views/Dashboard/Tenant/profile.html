@@ -12,89 +12,89 @@
 
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Initial
                         </div>
 
                         <div class="col-md-10">
-                            <input ng-model="person.initial" class="form-control" />
+                            {{person.initial}}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             First Name
                         </div>
                         <div class="col-md-10">
-                            <input ng-model="person.firstName" class="form-control" />
+                            {{person.firstName}}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Middle Name
                         </div>
 
                         <div class="col-md-10">
-                            <input ng-model="person.middleName" class="form-control" />
+                            {{person.middleName}}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Last Name
                         </div>
 
                         <div class="col-md-10">
-                            <input ng-model="person.lastName" class="form-control" />
+                            {{person.lastName}}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Date Of Birth
                         </div>
                         <div class="col-md-10">
-                            <input jqdatepicker class="form-control" ng-model="person.dateOfBirth" />
+                            {{person.dateOfBirth|  date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Place Of Birth
                         </div>
                         <div class="col-md-10">
-                            <input ng-model="person.placeOfBirth" class="form-control" />
+                            {{person.placeOfBirth}}
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Identification Mark
                         </div>
 
                         <div class="col-md-10">
-                            <input ng-model="person.identificationMark" class="form-control" />
+                            {{person.identificationMark}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             PAN Card Number
                         </div>
 
                         <div class="col-md-10">
-                            <input ng-model="person.pan" class="form-control" />
+                            {{person.pan}}
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             Adhaar Card Number
                         </div>
 
                         <div class="col-md-10">
-                            <input ng-model="person.adhaarCard" class="form-control" />
+                            {{person.adhaarCard}}
                         </div>
                     </div>
 
@@ -103,26 +103,43 @@
 
 
                     <div class="form-group" ng-repeat="attr in person.personAttributes">
-                        <div class="col-md-2 control-label">
+                        <div class="col-md-2">
                             {{attr.roleAttribute.description}}
                         </div>
 
 
                         <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='string'">
-                            <input ng-model="attr.stringValue" class="form-control" />
+                            {{attr.stringValue}}
                         </div>
                         <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='int'">
-                            <input ng-model="attr.intValue" class="form-control" />
+                            {{attr.intValue}}
                         </div>
                         <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='float'">
-                            <input ng-model="attr.floatValue" class="form-control" />
+                            {{attr.floatValue}}
                         </div>
                         <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='date'">
-                            <input jqdatepicker class="form-control" ng-model="attr.dateValue" />
+                            {{attr.dateValue|  date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}
                         </div>
 
                     </div>
 
+                    <hr />
+                    <div ng-repeat="oc in person.addressOccupations">
+
+                        <div class="h4" style="margin-bottom: 15px; margin-top: 25px">Lived at: {{fullAddress(oc.address)}}</div>
+
+                        <div class="form-group">
+                            <div class="col-md-2">From</div>
+                            <div class="col-md-10">{{oc.occupiedFrom |  date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">To</div>
+                            <div class="col-md-10">{{oc.occupiedTo | date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}</div>
+                        </div>
+
+                        <hr/>
+
+                    </div>
 
                     <!--<button class="btn btn-primary btn-md pull-right" ng-click="cancel(1)" ng-hide="registrationSuccess">Save</button>-->
                 </div>
@@ -132,83 +149,5 @@
 
 
 
-
-
-
-    <div class="row setup-content" id="tstep-2">
-        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
-            <div>
-
-                <div ng-repeat="oc in person.addressOccupations" class="table-bordered" style="padding: 5px; margin-bottom: 10px;background-color: whitesmoke">
-                    <div class="h4" style="margin: 10px; text-align: center;font-weight: bold">Please enter your previous address:</div>
-                    <hr />
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Address Line 1</div>
-                        <div class="col-md-10">
-                            <input ng-model="oc.address.addressLine1" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Address Line 2</div>
-                        <div class="col-md-10">
-                            <input ng-model="oc.address.addressLine2" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Address Line 3</div>
-                        <div class="col-md-10">
-                            <input ng-model="oc.address.addressLine3" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">City</div>
-                        <div class="col-md-10">
-                            <input ng-model="oc.address.city" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">State</div>
-                        <div class="col-md-10">
-                            <input ng-model="oc.address.state" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Pin Code</div>
-                        <div class="col-md-10">
-                            <input ng-model="oc.address.postCode" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Occupied From</div>
-                        <div class="col-md-10">
-                            <input jqdatepicker class="form-control" ng-model="oc.occupiedFrom" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">Occupied To</div>
-                        <div class="col-md-10">
-                            <input jqdatepicker class="form-control" ng-model="oc.occupiedTo" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <button class="btn btn-dribbble btn-xs pull-right" ng-click="addNewAddressOccupation()" style="margin: 15px">add another previous address</button>
-                    <!--<button ng-click="removeAddress($index)">delete</button>-->
-                </div>
-
-
-                <div class="alert alert-danger text-center" role="alert" ng-show="registrationError!=''">
-                    {{registrationError}}
-                </div>
-
-                <hr />
-
-                <div class="row form-group">
-                    <button class="btn btn-primary btn-md pull-right row" ng-click="savePerson(2)" style="margin: 15px">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
