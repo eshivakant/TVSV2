@@ -1,1 +1,47 @@
-﻿<div class="h1">Report A New Tenant</div>
+﻿<div class="container">
+
+
+
+    <div class="row setup-content">
+        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
+            <div>
+
+                <div class="h1">Report A New Tenant</div>
+                <hr />
+
+                <div class="alert alert-info text-center" role="alert">Please fill in the details of the person for whom you will like to do a police verification. Please provide as much infarmation as you have.</div>
+
+
+                <div class="form-horizontal">
+
+                    <div ng-include src="'app/partialViews/personPartial.html'">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Select address
+                        </div>
+
+                        <div class="col-md-10">
+                            <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.selectedAddressId" ng-options="t.id as vm.fullAddress(t) for t in vm.addresses">
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="alert alert-danger text-center" role="alert" ng-show="vm.error!=''">
+                        {{vm.error}}
+                    </div>
+
+
+                    <button class="btn btn-primary btn-md pull-right" ng-click="vm.saveRequest()" ng-hide="vm.success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

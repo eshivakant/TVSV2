@@ -92,7 +92,7 @@ app.controller('landlordsRateTenantCtrl', ['$scope', '$http', '$location', '$q',
                 return "Couldn't be better!";
 
             default:
-                return "Not Known";
+                return "";
         }
     }
 

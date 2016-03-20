@@ -76,3 +76,4 @@ var LandlordsPoliceVerificationCtrl = (function () {
     LandlordsPoliceVerificationCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
     return LandlordsPoliceVerificationCtrl;
 })();
+//# sourceMappingURL=policeverification.js.map

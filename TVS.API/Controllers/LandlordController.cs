@@ -89,6 +89,84 @@ namespace TVS.API.Controllers
 
 
 
+        [Route("myaddresses")]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetMyAddresses()
+        {
+            try
+            {
+                var me = await GetMyUserIdMappings();
+
+                var myaddressOwnerships = _context.AddressOwnerships.Where(a => a.PersonId == me.PersonId);
+                var addresses = await myaddressOwnerships.Select(o => o.Address).ToListAsync();
+                var myAddresses = new List<Address>();
+
+                foreach (var address in addresses)
+                {
+                    myAddresses.Add(EfMapper.Map(address));
+                }
+
+                return Ok(myAddresses);
+
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        //Save New Landlord
+        [Route("NewTenant")]
+        [HttpPost]
+        public async Task<IHttpActionResult> SaveNewTenant([FromBody] Person person)
+        {
+            try
+            {
+                foreach (var addressOccupation in person.AddressOccupations)
+                {
+                    addressOccupation.Address = null;
+                }
+
+                _context.People.Add(person);
+
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+            
+        }
+
+
+        [Route("NewAddress")]
+        [HttpPost]
+        public async Task<IHttpActionResult> SaveNewAddress([FromBody] AddressOwnership addressOwnership)
+        {
+            try
+            {
+                var me = await GetMyUserIdMappings();
+
+                addressOwnership.PersonId = me.PersonId;
+
+                _context.AddressOwnerships.Add(addressOwnership);
+
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+
+        }
+
+
         //Save New Landlord
         [Route("Save")]
         [HttpPost]

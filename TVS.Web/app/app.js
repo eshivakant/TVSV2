@@ -101,6 +101,7 @@ app.config(function ($routeProvider) {
     });
     $routeProvider.when("/reportnewtenant", {
         controller: "landlordsReportNewTenantCtrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/dashboard/landlord/reportnewtenant.html"
     });
     $routeProvider.when("/lscore", {
@@ -118,6 +119,11 @@ app.config(function ($routeProvider) {
     $routeProvider.when("/tenanthistory", {
         controller: "landlordsTenantHistoryCtrl",
         templateUrl: "/app/views/dashboard/landlord/tenanthistory.html"
+    });
+    $routeProvider.when("/addnewaddress", {
+        controller: "LandlordsAddNewAddressCtrl",
+        controllerAs: "vm",
+        templateUrl: "/app/views/dashboard/landlord/addnewaddress.html"
     });
     $routeProvider.when("/creditcheck", {
         controller: "creditCheckCtrl",
@@ -193,3 +199,4 @@ app.filter('ifEmpty', function () { return function (input, defaultValue) {
     return input;
 }; });
 app.config(function (NotificationProvider) { NotificationProvider.setOptions({ delay: 10000, startTop: 20, startRight: 10, verticalSpacing: 20, horizontalSpacing: 20, positionX: 'right', positionY: 'bottom' }); });
+//# sourceMappingURL=app.js.map
