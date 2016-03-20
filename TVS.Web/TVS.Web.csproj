@@ -114,7 +114,7 @@
     <Content Include="app\views\Dashboard\Landlord\policeverification.html" />
     <TypeScriptCompile Include="app\views\Dashboard\Landlord\policeverification.ts" />
     <Content Include="app\views\Dashboard\Landlord\profile.html" />
-    <Content Include="app\views\Dashboard\Landlord\profile.js" />
+    <TypeScriptCompile Include="app\views\Dashboard\Landlord\profile.ts" />
     <Content Include="app\views\Dashboard\Landlord\rateTenant.html" />
     <Content Include="app\views\Dashboard\Landlord\rateTenant.js" />
     <Content Include="app\views\Dashboard\Landlord\reportNewTenant.html" />
@@ -139,8 +139,6 @@
     <Content Include="app\views\Dashboard\Tenant\myRatings.js" />
     <Content Include="app\views\Dashboard\Tenant\myReviews.html" />
     <Content Include="app\views\Dashboard\Tenant\myReviews.js" />
-    <Content Include="app\views\Dashboard\Tenant\policeverification.html" />
-    <Content Include="app\views\Dashboard\Tenant\policeverification.js" />
     <Content Include="app\views\Dashboard\Tenant\profile.html" />
     <Content Include="app\views\Dashboard\Tenant\profile.js" />
     <Content Include="app\views\Dashboard\Tenant\rateLandlord.html" />
@@ -214,6 +212,10 @@
     <Content Include="index.html" />
     <Content Include="scripts\angucomplete-alt.js" />
     <Content Include="scripts\angular-local-storage.min.js" />
+    <Content Include="scripts\angular-ui-notification\angular-ui-notification.css" />
+    <Content Include="scripts\angular-ui-notification\angular-ui-notification.js" />
+    <Content Include="scripts\angular-ui-notification\angular-ui-notification.min.css" />
+    <Content Include="scripts\angular-ui-notification\angular-ui-notification.min.js" />
     <Content Include="scripts\authComplete.js" />
     <Content Include="scripts\datetime.js" />
     <Content Include="scripts\loading-bar.min.js" />

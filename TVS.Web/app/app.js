@@ -1,4 +1,4 @@
-var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt', 'ngFileUpload']);
+var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt', 'ngFileUpload', 'ui-notification']);
 app.config(function ($routeProvider) {
     $routeProvider.when("/home", {
         controller: "homeController",
@@ -87,11 +87,12 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/dashboard/landlord/policeverification.html"
     });
     $routeProvider.when("/lprofile", {
-        controller: "landlordsProfileCtrl",
+        controller: "LandlordsProfileCtrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/dashboard/landlord/profile.html"
     });
     $routeProvider.when("/lprofile/:personId", {
-        controller: "landlordsProfileCtrl",
+        controller: "LandlordsProfileCtrl",
         templateUrl: "/app/views/dashboard/landlord/profile.html"
     });
     $routeProvider.when("/ratetenant", {
@@ -135,10 +136,10 @@ app.config(function ($routeProvider) {
         controller: "tenantsMyReviewsCtrl",
         templateUrl: "/app/views/dashboard/tenant/myreviews.html"
     });
-    $routeProvider.when("/tpoliceverification", {
-        controller: "tenantsPoliceVerificationCtrl",
-        templateUrl: "/app/views/dashboard/tenant/policeverification.html"
-    });
+    //$routeProvider.when("/tpoliceverification", {
+    //    controller: "tenantsPoliceVerificationCtrl",
+    //    templateUrl: "/app/views/dashboard/tenant/policeverification.html"
+    //});
     $routeProvider.when("/tprofile", {
         controller: "tenantsProfileCtrl",
         templateUrl: "/app/views/dashboard/tenant/profile.html"
@@ -191,3 +192,4 @@ app.filter('ifEmpty', function () { return function (input, defaultValue) {
     }
     return input;
 }; });
+app.config(function (NotificationProvider) { NotificationProvider.setOptions({ delay: 10000, startTop: 20, startRight: 10, verticalSpacing: 20, horizontalSpacing: 20, positionX: 'right', positionY: 'bottom' }); });

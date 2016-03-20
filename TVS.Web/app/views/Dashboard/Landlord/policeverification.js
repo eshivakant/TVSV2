@@ -1,15 +1,16 @@
 app.controller(LandlordsPoliceVerificationCtrl);
 var LandlordsPoliceVerificationCtrl = (function () {
-    function LandlordsPoliceVerificationCtrl(scope, http, $location, $q, ngAuthSettings, personData, upload, timeout) {
+    function LandlordsPoliceVerificationCtrl(scope, http, location, q, ngAuthSettings, personData, upload, timeout, Notification) {
         var _this = this;
         this.scope = scope;
         this.http = http;
-        this.$location = $location;
-        this.$q = $q;
+        this.location = location;
+        this.q = q;
         this.ngAuthSettings = ngAuthSettings;
         this.personData = personData;
         this.upload = upload;
         this.timeout = timeout;
+        this.Notification = Notification;
         this.error = "";
         this.log = "";
         this.serverFileNames = new Array();
@@ -37,7 +38,6 @@ var LandlordsPoliceVerificationCtrl = (function () {
                         file: file
                     }).then(function (resp) {
                         _this.timeout(function () {
-                            //this.log = 'file: ' + resp.config.file.name +', Response: ' + JSON.stringify(resp.data) +'\n' + this.log;
                             _this.serverFileNames.push(resp.data.returnData);
                         });
                     }, null, function (evt) {
@@ -65,11 +65,14 @@ var LandlordsPoliceVerificationCtrl = (function () {
             .then(function () {
             _this.success = true;
             _this.error = "";
+            _this.Notification({ message: 'Success', title: 'Request submitted!' });
+            _this.location.path('/postLogin');
         }, function () {
             _this.success = false;
             _this.error = "Oops, server error occurred!";
+            _this.Notification.error({ message: 'Server Error Ocurred!', delay: 1000 });
         });
     };
-    LandlordsPoliceVerificationCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout'];
+    LandlordsPoliceVerificationCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
     return LandlordsPoliceVerificationCtrl;
 })();

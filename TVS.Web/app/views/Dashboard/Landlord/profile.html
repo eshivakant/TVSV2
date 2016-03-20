@@ -1,1 +1,153 @@
-﻿<div class="h1">Profile</div>
+﻿<div class="h1">Landlord Profile</div>
+
+<hr />
+
+<div class="container">
+
+    <div class="row setup-content" id="tstep-1">
+        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
+            <div>
+
+                <div class="form-horizontal">
+
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Initial
+                        </div>
+
+                        <div class="col-md-10">
+                            {{vm.person.initial}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            First Name
+                        </div>
+                        <div class="col-md-10">
+                            {{vm.person.firstName}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Middle Name
+                        </div>
+
+                        <div class="col-md-10">
+                            {{vm.person.middleName}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Last Name
+                        </div>
+
+                        <div class="col-md-10">
+                            {{vm.person.lastName}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Date Of Birth
+                        </div>
+                        <div class="col-md-10">
+                            {{vm.person.dateOfBirth|  date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Place Of Birth
+                        </div>
+                        <div class="col-md-10">
+                            {{vm.person.placeOfBirth}}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Identification Mark
+                        </div>
+
+                        <div class="col-md-10">
+                            {{vm.person.identificationMark}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            PAN Card Number
+                        </div>
+
+                        <div class="col-md-10">
+                            {{vm.person.pan}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            Adhaar Card Number
+                        </div>
+
+                        <div class="col-md-10">
+                            {{vm.person.adhaarCard}}
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group" ng-repeat="attr in vm.person.personAttributes">
+                        <div class="col-md-2">
+                            {{attr.roleAttribute.description}}
+                        </div>
+
+
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='string'">
+                            {{attr.stringValue}}
+                        </div>
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='int'">
+                            {{attr.intValue}}
+                        </div>
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='float'">
+                            {{attr.floatValue}}
+                        </div>
+                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='date'">
+                            {{attr.dateValue|  date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}
+                        </div>
+
+                    </div>
+
+                    <hr />
+                    <div ng-repeat="oc in person.addressOwnerships">
+
+                        <div class="h4" style="margin-bottom: 15px; margin-top: 25px">Lived at: {{fullAddress(oc.address)}}</div>
+
+                        <div class="form-group">
+                            <div class="col-md-2">From</div>
+                            <div class="col-md-10">{{oc.ownedFrom |  date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}</div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">To</div>
+                            <div class="col-md-10">{{oc.ownedTo | date:'dd MMMM, yyyy' |ifEmpty: 'Not Available'}}</div>
+                        </div>
+
+                        <hr />
+
+                    </div>
+
+                    <!--<button class="btn btn-primary btn-md pull-right" ng-click="cancel(1)" ng-hide="registrationSuccess">Save</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

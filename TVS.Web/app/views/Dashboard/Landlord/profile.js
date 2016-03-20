@@ -1,50 +1,34 @@
-﻿'use strict';
-app.controller('landlordsProfileCtrl', ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData', function ($scope, $http, $location, $routeParams, $q, ngAuthSettings, personData) {
-
-
-    function init() {
-        var personId = $routeParams.personId;
-
-    }
-
-    init();
-
-}]);
-
-
-
-'use strict';
-app.controller('tenantsProfileCtrl', ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData', function ($scope, $http, $location, $routeParams, $q, ngAuthSettings, personData) {
-
-    var serviceBase = ngAuthSettings.apiServiceBaseUri;
-
-    $scope.person = {};
-    $scope.isMyProlfile = false;
-
-    function init() {
-
+app.controller(LandlordsProfileCtrl);
+var LandlordsProfileCtrl = (function () {
+    function LandlordsProfileCtrl(scope, http, $location, $routeParams, $q, ngAuthSettings, personData) {
+        var _this = this;
+        this.scope = scope;
+        this.http = http;
+        this.$location = $location;
+        this.$routeParams = $routeParams;
+        this.$q = $q;
+        this.ngAuthSettings = ngAuthSettings;
+        this.personData = personData;
+        this.serviceBase = ngAuthSettings.apiServiceBaseUri;
         var url = '';
         if ($routeParams.personId == undefined) {
-            url = serviceBase + '/Api/Tenant/Template' + '?hash=' + Math.random();
-            $scope.isMyProlfile = true;
-        } else
-            url = serviceBase + '/Api/Tenant/Profile/' + $routeParams.personId;
-        $http.get(url)
+            url = serviceBase + '/Api/Landlord/Template' + '?hash=' + Math.random();
+            this.isMyProfile = true;
+        }
+        else
+            url = serviceBase + '/Api/Landlord/Profile/' + $routeParams.personId;
+        this.http.get(url)
             .then(function (response) {
-                $scope.person = response.data;
-            });
-
+            _this.person = response.data;
+        });
     }
-
-    init();
-
-
-    $scope.fullAddress = function (address) {
+    LandlordsProfileCtrl.prototype.fullAddress = function (address) {
         var add = address.addressLine1 + ', ' + address.addressLine2 + ', ' + address.addressLine3 + ', ' + address.city + ', ' + address.state;
-        if (address.postCode != undefined && address.postCode != null && address.postCode != '') add = add + ', ' + address.postCode;
+        if (address.postCode != undefined && address.postCode != null && address.postCode !== '')
+            add = add + ', ' + address.postCode;
         add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
         return add;
-    }
-
-
-}]);
+    };
+    LandlordsProfileCtrl.$inject = ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData'];
+    return LandlordsProfileCtrl;
+})();
