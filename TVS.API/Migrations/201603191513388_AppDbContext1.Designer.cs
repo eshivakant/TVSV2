@@ -13,7 +13,7 @@ namespace TVS.API.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603061438196_AppDbContext1"; }
+            get { return "201603191513388_AppDbContext1"; }
         }
         
         string IMigrationMetadata.Source

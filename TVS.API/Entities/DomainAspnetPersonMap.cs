@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using DefinitelyTypedNet;
 
 namespace TVS.API.Entities
 {
+    [TypeScript]
     [Table("DomainAspnetPersonMap")]
     public partial class DomainAspnetPersonMap
     {

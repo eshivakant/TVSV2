@@ -7,13 +7,13 @@ namespace TVS.API.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AppDbContext2 : IMigrationMetadata
+    public sealed partial class AppDbContext : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AppDbContext2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AppDbContext));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603061513310_AppDbContext2"; }
+            get { return "201603191209202_AppDbContext"; }
         }
         
         string IMigrationMetadata.Source

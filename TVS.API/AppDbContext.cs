@@ -25,7 +25,10 @@ namespace TVS.API
         public virtual DbSet<RatingBreakdown> RatingBreakdowns { get; set; }
         public virtual DbSet<RoleAttribute> RoleAttributes { get; set; }
         public virtual DbSet<RoleParameter> RoleParameters { get; set; }
-        public virtual DbSet<Log> Logs { get; set;}
+        public virtual DbSet<VerificationDocument> VerificationDocuments { get; set; }
+        public virtual DbSet<PersonDocument> PersonDocuments { get; set; }
+        public virtual DbSet<VerificationRequest> VerificationRequests { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
 
     }
 

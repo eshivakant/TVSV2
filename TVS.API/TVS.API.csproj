@@ -43,6 +43,10 @@
       <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DefinitelyTyped.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DefinitelyTyped.NET.0.1.16029.01\lib\net45\DefinitelyTyped.Net.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -152,10 +156,12 @@
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EfMapper.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\LandlordController.cs" />
     <Compile Include="Controllers\LandlordRatingController.cs" />
     <Compile Include="Controllers\LandlordSearchController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\OtherRequestsController.cs" />
     <Compile Include="Controllers\PersonAPIController.cs" />
     <Compile Include="Controllers\PersonDTO.cs" />
     <Compile Include="Controllers\RefreshTokensController.cs" />
@@ -168,6 +174,8 @@
     <Compile Include="Entities\ApplicationDbContext.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Client.cs" />
+    <Compile Include="Entities\PersonDocument.cs" />
+    <Compile Include="Entities\VerificationDocument.cs" />
     <Compile Include="Entities\DomainAspnetPersonMap.cs" />
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Person.cs" />
@@ -177,26 +185,29 @@
     <Compile Include="Entities\RefreshToken.cs" />
     <Compile Include="Entities\RoleAttribute.cs" />
     <Compile Include="Entities\RoleParameter.cs" />
+    <Compile Include="Entities\VerificationRequest.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201602221213223_AppDbContext.cs" />
-    <Compile Include="Migrations\201602221213223_AppDbContext.Designer.cs">
-      <DependentUpon>201602221213223_AppDbContext.cs</DependentUpon>
+    <Compile Include="Migrations\201603191209202_AppDbContext.cs" />
+    <Compile Include="Migrations\201603191209202_AppDbContext.Designer.cs">
+      <DependentUpon>201603191209202_AppDbContext.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603061438196_AppDbContext1.cs" />
-    <Compile Include="Migrations\201603061438196_AppDbContext1.Designer.cs">
-      <DependentUpon>201603061438196_AppDbContext1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603061513310_AppDbContext2.cs" />
-    <Compile Include="Migrations\201603061513310_AppDbContext2.Designer.cs">
-      <DependentUpon>201603061513310_AppDbContext2.cs</DependentUpon>
+    <Compile Include="Migrations\201603191513388_AppDbContext1.cs" />
+    <Compile Include="Migrations\201603191513388_AppDbContext1.Designer.cs">
+      <DependentUpon>201603191513388_AppDbContext1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Misc\Constants.cs" />
     <Compile Include="Models\AddressSearchModel.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ExternalLoginModels.cs" />
+    <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\ReportMoveModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\VerificationRequestDto.cs" />
+    <Compile Include="Photo\IPhotoManager.cs" />
+    <Compile Include="Photo\LocalPhotoManager.cs" />
+    <Compile Include="Photo\PhotoActionResult.cs" />
+    <Compile Include="Photo\PhotoMultipartFormDataStreamProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\FacebookAuthProvider.cs" />
     <Compile Include="Providers\GoogleAuthProvider.cs" />
@@ -224,14 +235,11 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602221213223_AppDbContext.resx">
-      <DependentUpon>201602221213223_AppDbContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603191209202_AppDbContext.resx">
+      <DependentUpon>201603191209202_AppDbContext.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603061438196_AppDbContext1.resx">
-      <DependentUpon>201603061438196_AppDbContext1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603061513310_AppDbContext2.resx">
-      <DependentUpon>201603061513310_AppDbContext2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603191513388_AppDbContext1.resx">
+      <DependentUpon>201603191513388_AppDbContext1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -259,6 +267,12 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+
+$(SolutionDir)TVS.API\bin\DefinitelyTyped.Net.exe -i "$(TargetPath)" -o "$(SolutionDir)TVS.Web\app\generated-types.ts"
+</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

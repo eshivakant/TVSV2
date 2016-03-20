@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using DefinitelyTypedNet;
 
 namespace TVS.API.Entities
 {
+    [TypeScript]
     [Table("PersonRating")]
     public partial class PersonRating
     {

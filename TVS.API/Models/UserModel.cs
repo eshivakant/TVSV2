@@ -24,6 +24,4 @@ namespace TVS.API.Models
         public string Role { get; set; }
 
     }
-
-
 }

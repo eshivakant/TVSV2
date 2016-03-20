@@ -114,11 +114,25 @@ namespace TVS.API.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.PersonDocument",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Url = c.String(maxLength: 250),
+                        Description = c.String(maxLength: 250),
+                        Person_Id = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Person", t => t.Person_Id)
+                .Index(t => t.Person_Id);
+            
+            CreateTable(
                 "dbo.PersonRating",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         PersonId = c.Long(nullable: false),
+                        AddressId = c.Long(nullable: false),
                         ProviderId = c.Long(nullable: false),
                         AverageScore = c.Int(nullable: false),
                         Comments = c.String(),
@@ -128,8 +142,10 @@ namespace TVS.API.Migrations
                         DateUpdated = c.DateTime(storeType: "date"),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Address", t => t.AddressId, cascadeDelete: true)
                 .ForeignKey("dbo.Person", t => t.PersonId, cascadeDelete: true)
-                .Index(t => t.PersonId);
+                .Index(t => t.PersonId)
+                .Index(t => t.AddressId);
             
             CreateTable(
                 "dbo.RatingBreakdown",
@@ -168,6 +184,19 @@ namespace TVS.API.Migrations
                         Active = c.Boolean(nullable: false),
                         RefreshTokenLifeTime = c.Int(nullable: false),
                         AllowedOrigin = c.String(maxLength: 100),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Log",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        AspnetId = c.String(maxLength: 450),
+                        Lat = c.Decimal(precision: 18, scale: 2),
+                        Long = c.Decimal(precision: 18, scale: 2),
+                        IpAddress = c.String(maxLength: 50),
+                        Method = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -253,10 +282,35 @@ namespace TVS.API.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.VerificationDocument",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Url = c.String(maxLength: 250),
+                        Description = c.String(maxLength: 250),
+                        VerificationRequest_Id = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.VerificationRequest", t => t.VerificationRequest_Id)
+                .Index(t => t.VerificationRequest_Id);
+            
+            CreateTable(
+                "dbo.VerificationRequest",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        WhoIsRequesting = c.String(),
+                        PersonId = c.Long(nullable: false),
+                        RequestorId = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.VerificationDocument", "VerificationRequest_Id", "dbo.VerificationRequest");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -264,6 +318,8 @@ namespace TVS.API.Migrations
             DropForeignKey("dbo.RatingBreakdown", "RoleParameterId", "dbo.RoleParameter");
             DropForeignKey("dbo.RatingBreakdown", "PersonRatingId", "dbo.PersonRating");
             DropForeignKey("dbo.PersonRating", "PersonId", "dbo.Person");
+            DropForeignKey("dbo.PersonRating", "AddressId", "dbo.Address");
+            DropForeignKey("dbo.PersonDocument", "Person_Id", "dbo.Person");
             DropForeignKey("dbo.PersonAttribute", "RoleAttributeId", "dbo.RoleAttribute");
             DropForeignKey("dbo.PersonAttribute", "PersonId", "dbo.Person");
             DropForeignKey("dbo.DomainAspnetPersonMap", "PersonId", "dbo.Person");
@@ -271,6 +327,7 @@ namespace TVS.API.Migrations
             DropForeignKey("dbo.AddressOwnership", "AddressId", "dbo.Address");
             DropForeignKey("dbo.AddressOccupation", "PersonId", "dbo.Person");
             DropForeignKey("dbo.AddressOccupation", "AddressId", "dbo.Address");
+            DropIndex("dbo.VerificationDocument", new[] { "VerificationRequest_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -279,7 +336,9 @@ namespace TVS.API.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.RatingBreakdown", new[] { "RoleParameterId" });
             DropIndex("dbo.RatingBreakdown", new[] { "PersonRatingId" });
+            DropIndex("dbo.PersonRating", new[] { "AddressId" });
             DropIndex("dbo.PersonRating", new[] { "PersonId" });
+            DropIndex("dbo.PersonDocument", new[] { "Person_Id" });
             DropIndex("dbo.PersonAttribute", new[] { "PersonId" });
             DropIndex("dbo.PersonAttribute", new[] { "RoleAttributeId" });
             DropIndex("dbo.DomainAspnetPersonMap", new[] { "PersonId" });
@@ -287,16 +346,20 @@ namespace TVS.API.Migrations
             DropIndex("dbo.AddressOwnership", new[] { "AddressId" });
             DropIndex("dbo.AddressOccupation", new[] { "PersonId" });
             DropIndex("dbo.AddressOccupation", new[] { "AddressId" });
+            DropTable("dbo.VerificationRequest");
+            DropTable("dbo.VerificationDocument");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.RefreshTokens");
+            DropTable("dbo.Log");
             DropTable("dbo.Clients");
             DropTable("dbo.RoleParameter");
             DropTable("dbo.RatingBreakdown");
             DropTable("dbo.PersonRating");
+            DropTable("dbo.PersonDocument");
             DropTable("dbo.RoleAttribute");
             DropTable("dbo.PersonAttribute");
             DropTable("dbo.DomainAspnetPersonMap");

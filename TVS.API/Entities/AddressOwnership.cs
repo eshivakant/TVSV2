@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using DefinitelyTypedNet;
 
 namespace TVS.API.Entities
 {
+    [TypeScript]
     [Table("AddressOwnership")]
     public partial class AddressOwnership
     {
