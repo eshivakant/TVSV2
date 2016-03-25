@@ -111,7 +111,7 @@
     <Content Include="app\views\Dashboard\Landlord\home.html" />
     <Content Include="app\views\Dashboard\Landlord\home.js" />
     <Content Include="app\views\Dashboard\Landlord\myRatings.html" />
-    <Content Include="app\views\Dashboard\Landlord\myRatings.js" />
+    <TypeScriptCompile Include="app\views\Dashboard\Landlord\myRatings.ts" />
     <Content Include="app\views\Dashboard\Landlord\myReviews.html" />
     <Content Include="app\views\Dashboard\Landlord\myReviews.js" />
     <Content Include="app\views\Dashboard\Landlord\policeverification.html" />
@@ -141,7 +141,7 @@
     <Content Include="app\views\Dashboard\Tenant\landlordhistory.html" />
     <Content Include="app\views\Dashboard\Tenant\landlordhistory.js" />
     <Content Include="app\views\Dashboard\Tenant\myRatings.html" />
-    <Content Include="app\views\Dashboard\Tenant\myRatings.js" />
+    <TypeScriptCompile Include="app\views\Dashboard\Tenant\myRatings.ts" />
     <Content Include="app\views\Dashboard\Tenant\myReviews.html" />
     <Content Include="app\views\Dashboard\Tenant\myReviews.js" />
     <Content Include="app\views\Dashboard\Tenant\profile.html" />
@@ -173,6 +173,7 @@
     <Content Include="authComplete.html" />
     <Content Include="content\css\angucomplete-alt.css" />
     <Content Include="content\css\animate.css" />
+    <Content Include="content\css\awesome-bootstrap-checkbox.css" />
     <Content Include="content\css\font-awesome.min.css" />
     <Content Include="content\css\infocard.css" />
     <Content Include="content\css\loading-bar.css" />
@@ -190,6 +191,7 @@
     <Content Include="content\Images\house.png" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\ngauthenticationweb.pubxml" />
+    <Content Include="scripts\cgarvis-angular-toggle-switch-5f3f523\bower.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -222,6 +224,10 @@
     <Content Include="scripts\angular-ui-notification\angular-ui-notification.min.css" />
     <Content Include="scripts\angular-ui-notification\angular-ui-notification.min.js" />
     <Content Include="scripts\authComplete.js" />
+    <Content Include="scripts\cgarvis-angular-toggle-switch-5f3f523\angular-toggle-switch-bootstrap.css" />
+    <Content Include="scripts\cgarvis-angular-toggle-switch-5f3f523\angular-toggle-switch.css" />
+    <Content Include="scripts\cgarvis-angular-toggle-switch-5f3f523\angular-toggle-switch.js" />
+    <Content Include="scripts\cgarvis-angular-toggle-switch-5f3f523\angular-toggle-switch.min.js" />
     <Content Include="scripts\datetime.js" />
     <Content Include="scripts\loading-bar.min.js" />
     <Content Include="scripts\ng-file-upload\FileAPI.flash.swf" />

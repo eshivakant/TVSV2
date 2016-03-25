@@ -14,6 +14,22 @@ module TVS.API.Models {
 		public ownersLastName: string;
 		public ownersFirstName: string;
 	}
+	export class AddressRatingViewModel {
+		public ownerId: number;
+		public ownersName: string;
+		public providerId: number;
+		public providerName: string;
+		public addressId: number;
+		public addressString: string;
+		public aggregateScore: number;
+		public comments: string;
+		public scoreViewModels: Array<TVS.API.Models.ScoreViewModel>;
+	}
+	export class ScoreViewModel {
+		public parameter: string;
+		public parameterDesc: string;
+		public score: number;
+	}
 	export class PhotoViewModel {
 		public name: string;
 		public created: Date;

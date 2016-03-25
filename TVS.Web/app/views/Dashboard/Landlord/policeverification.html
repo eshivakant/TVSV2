@@ -16,8 +16,7 @@
         height: 100px;
         text-align: center;
         padding-top: 25px;
-        cursor: pointer
-        
+        cursor: pointer;
     }
 
     .dragover {
@@ -26,23 +25,23 @@
 </style>
 
 
+
 <div class="container">
 
-    
+
 
     <div class="row setup-content">
         <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
             <div>
 
-                <h3>Police Verification Request</h3>
+                <h3>Police, Credit & Civil Verification Requests</h3>
 
                 <hr />
 
                 <div class="alert alert-info text-center" role="alert">Please fill in the details of the person for whom you will like to do a police verification. Please provide as much infarmation as you have.</div>
-                
+
 
                 <div class="form-horizontal">
-
 
                     <div class="form-group">
                         <div class="col-md-2 control-label">
@@ -156,6 +155,42 @@
 
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Police Check Rquired
+                        </div>
+
+                        <div class="col-md-10">
+                            <toggle-switch ng-model="vm.policeCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
+
+                                <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Civil Checks Rquired
+                        </div>
+
+                        <div class="col-md-10">
+                            <toggle-switch ng-model="vm.civilCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
+                            <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2 control-label">
+                            Creidt Check Rquired
+                        </div>
+
+                        <div class="col-md-10">
+                            <toggle-switch ng-model="vm.creditCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
+                            <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
+                        </div>
+                    </div>
+
 
 
                     <div class="form-group">
@@ -210,5 +245,4 @@
 
 
 </div>
-
 

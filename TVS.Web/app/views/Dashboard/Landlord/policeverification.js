@@ -1,10 +1,11 @@
 app.controller(LandlordsPoliceVerificationCtrl);
 var LandlordsPoliceVerificationCtrl = (function () {
-    function LandlordsPoliceVerificationCtrl(scope, http, location, q, ngAuthSettings, personData, upload, timeout, Notification) {
+    function LandlordsPoliceVerificationCtrl(scope, http, location, $routeParams, q, ngAuthSettings, personData, upload, timeout, Notification) {
         var _this = this;
         this.scope = scope;
         this.http = http;
         this.location = location;
+        this.$routeParams = $routeParams;
         this.q = q;
         this.ngAuthSettings = ngAuthSettings;
         this.personData = personData;
@@ -26,6 +27,12 @@ var LandlordsPoliceVerificationCtrl = (function () {
             if (_this.scope != null)
                 _this.uploadFile(_this.file);
         });
+        if (this.$routeParams.initString.indexOf('police') > -1)
+            this.policeCheckRequired = true;
+        if (this.$routeParams.initString.indexOf('civil') > -1)
+            this.civilCheckRequired = true;
+        if (this.$routeParams.initString.indexOf('credit') > -1)
+            this.creditCheckRequired = true;
     }
     LandlordsPoliceVerificationCtrl.prototype.uploadFile = function (files) {
         var _this = this;
@@ -55,6 +62,9 @@ var LandlordsPoliceVerificationCtrl = (function () {
         var req = this.model;
         req.verificationRequest = new TVS.API.Entities.VerificationRequest();
         req.verificationRequest.documents = new Array();
+        req.verificationRequest.crimeCheck = this.policeCheckRequired;
+        req.verificationRequest.creditCheck = this.creditCheckRequired;
+        req.verificationRequest.civilCheck = this.civilCheckRequired;
         angular.forEach(this.serverFileNames, function (f) {
             var doc = new TVS.API.Entities.VerificationDocument();
             doc.url = f;
@@ -73,7 +83,6 @@ var LandlordsPoliceVerificationCtrl = (function () {
             _this.Notification.error({ message: 'Server Error Ocurred!', delay: 1000 });
         });
     };
-    LandlordsPoliceVerificationCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
+    LandlordsPoliceVerificationCtrl.$inject = ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
     return LandlordsPoliceVerificationCtrl;
 })();
-//# sourceMappingURL=policeverification.js.map

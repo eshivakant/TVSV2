@@ -32,4 +32,3 @@ var LandlordsProfileCtrl = (function () {
     LandlordsProfileCtrl.$inject = ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData'];
     return LandlordsProfileCtrl;
 })();
-//# sourceMappingURL=profile.js.map

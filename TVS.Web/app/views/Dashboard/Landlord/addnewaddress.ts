@@ -73,7 +73,7 @@ class LandlordsAddNewAddressCtrl {
         //add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
         //return add;
 
-        var commonFunc = new CommonFunctions();
+        var commonFunc = new Helpers.CommonFunctions();
         return commonFunc.fullAddress(address);
     }
 

@@ -52,10 +52,9 @@ var landlordsReportNewTenantCtrl = (function () {
         //if (address.postCode != undefined && address.postCode != null && address.postCode !== '') add = add + ', ' + address.postCode;
         //add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
         //return add;
-        var commonFunc = new CommonFunctions();
+        var commonFunc = new Helpers.CommonFunctions();
         return commonFunc.fullAddress(address);
     };
     landlordsReportNewTenantCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
     return landlordsReportNewTenantCtrl;
 })();
-//# sourceMappingURL=reportNewTenant.js.map

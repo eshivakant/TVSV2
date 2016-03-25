@@ -1,4 +1,4 @@
-var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt', 'ngFileUpload', 'ui-notification']);
+var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt', 'ngFileUpload', 'ui-notification', 'toggle-switch']);
 app.config(function ($routeProvider) {
     $routeProvider.when("/home", {
         controller: "homeController",
@@ -73,15 +73,16 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/associate.html"
     });
     //landlord dashboard
-    $routeProvider.when("/myratings", {
+    $routeProvider.when("/lmyratings", {
         controller: "landlordsMyRatingsCtrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/dashboard/landlord/myratings.html"
     });
-    $routeProvider.when("/myreviews", {
+    $routeProvider.when("/lmyreviews", {
         controller: "landlordsMyReviewsCtrl",
         templateUrl: "/app/views/dashboard/landlord/myreviews.html"
     });
-    $routeProvider.when("/lpoliceverification", {
+    $routeProvider.when("/lpoliceverification/:initString", {
         controller: "LandlordsPoliceVerificationCtrl",
         controllerAs: "vm",
         templateUrl: "/app/views/dashboard/landlord/policeverification.html"
@@ -125,20 +126,17 @@ app.config(function ($routeProvider) {
         controllerAs: "vm",
         templateUrl: "/app/views/dashboard/landlord/addnewaddress.html"
     });
-    $routeProvider.when("/creditcheck", {
-        controller: "creditCheckCtrl",
-        templateUrl: "/app/views/dashboard/landlord/creditcheck.html"
-    });
     //tenant dashboard
-    $routeProvider.when("/myratings", {
+    $routeProvider.when("/tmyratings", {
         controller: "tenantsMyRatingsCtrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/dashboard/tenant/myratings.html"
     });
     $routeProvider.when("/addressprofile/id/:addressId", {
         controller: "addressprofileCtrl",
         templateUrl: "/app/views/dashboard/tenant/addressprofile.html"
     });
-    $routeProvider.when("/myreviews", {
+    $routeProvider.when("/tmyreviews", {
         controller: "tenantsMyReviewsCtrl",
         templateUrl: "/app/views/dashboard/tenant/myreviews.html"
     });
@@ -199,4 +197,3 @@ app.filter('ifEmpty', function () { return function (input, defaultValue) {
     return input;
 }; });
 app.config(function (NotificationProvider) { NotificationProvider.setOptions({ delay: 10000, startTop: 20, startRight: 10, verticalSpacing: 20, horizontalSpacing: 20, positionX: 'right', positionY: 'bottom' }); });
-//# sourceMappingURL=app.js.map
