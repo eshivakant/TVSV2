@@ -24,17 +24,18 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
       
     }
 
-    $scope.fuckyou = function () {
+    $scope.showSearchPanel = function () {
         ModalService.showModal({
             templateUrl: "app/views/ModalViews/personSearchModal.html",
             controller: 'personSrchModalCtrl',
             inputs: {
-                title: "A More Complex Example"
+                title: "Search Tenants..."
             }
     }).then(function (modal) {
             modal.element.modal();
             modal.close.then(function (result) {
-                $scope.yesNoResult = result;
+                $scope.newPerson = result;
+                $scope.search();
             });
         });
     }
@@ -58,5 +59,7 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
         return name.replace("  ", " ").replace(",,", ",");
     }
 
+
+    $scope.showSearchPanel();
 
 }]);

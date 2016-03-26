@@ -22,29 +22,3 @@ app.controller('personSrchModalCtrl', ['$scope', '$element', 'title', 'close', f
 
 
 
-
-//app.controller(personSrchModalCtrl);
-
-//class personSrchModalCtrl {
-    
-//    public person: TVS.API.Entities.Person;
-//    public close:Function;
-//    static $inject = ['$scope', '$element', 'title', 'close'];
-//    constructor(
-//        private scope: ng.IScope,
-//        private element,
-//        private title: string,
-//        close
-//    ) {
-//        this.person = new TVS.API.Entities.Person();
-//        this.close = () => { close(this.person, 500); };
-//        //this.cancel = () => {
-            
-//        //};
-//    }
-
-//    public cancel() {
-//        this.element.modal('hide');
-//        this.close(this.person, 500);
-//    }
-//}

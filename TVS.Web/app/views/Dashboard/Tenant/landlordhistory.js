@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('tenantsLandlordHistoryCtrl', ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', function ($scope, $http, $location, $q, ngAuthSettings, personData) {
+app.controller('tenantsLandlordHistoryCtrl', ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'ModalService', function ($scope, $http, $location, $q, ngAuthSettings, personData,ModalService) {
 
 
     $scope.newPerson = {};
@@ -18,6 +18,23 @@ app.controller('tenantsLandlordHistoryCtrl', ['$scope', '$http', '$location', '$
             //    }
             //});
         });
+
+    $scope.showSearchPanel = function () {
+        ModalService.showModal({
+            templateUrl: "app/views/ModalViews/personSearchModal.html",
+            controller: 'personSrchModalCtrl',
+            inputs: {
+                title: "Search Landlords..."
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                $scope.newPerson = result;
+                $scope.search();
+            });
+        });
+    }
+
 
     $scope.search = function () {
         $http.post(serviceBase + '/api/Search/Landlord/Search', $scope.newPerson)
@@ -48,4 +65,5 @@ app.controller('tenantsLandlordHistoryCtrl', ['$scope', '$http', '$location', '$
     }
 
 
+    $scope.showSearchPanel();
 }]);
