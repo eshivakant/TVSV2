@@ -24,181 +24,199 @@
     }
 </style>
 
+<form name="myForm" novalidate>
+
+    <div class="container">
 
 
-<div class="container">
+
+        <div class="row setup-content">
+            <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
+                <div>
+
+                    <h3>Police, Credit & Civil Verification Requests</h3>
+
+                    <hr />
+
+                    <div class="alert alert-info text-center" role="alert">Please fill in the details of the person for whom you will like to do a police verification. Please provide as much infarmation as you have.</div>
 
 
+                    <div class="form-horizontal">
 
-    <div class="row setup-content">
-        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
-            <div>
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Initial
+                            </div>
 
-                <h3>Police, Credit & Civil Verification Requests</h3>
-
-                <hr />
-
-                <div class="alert alert-info text-center" role="alert">Please fill in the details of the person for whom you will like to do a police verification. Please provide as much infarmation as you have.</div>
-
-
-                <div class="form-horizontal">
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Initial
+                            <div class="col-md-10">
+                                <input name="initial" ng-model="vm.model.person.initial" class="form-control" ng-required="true" />
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.initial" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            First Name
-                        </div>
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.firstName" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Middle Name
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                First Name
+                            </div>
+                            <div class="col-md-10">
+                                <input name="firstName" ng-model="vm.model.person.firstName" class="form-control" ng-required="true" />
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.middleName" class="form-control" />
-                        </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Middle Name
+                            </div>
 
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Last Name
-                        </div>
-
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.lastName" class="form-control" />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Date Of Birth
-                        </div>
-                        <div class="col-md-10">
-                            <input jqdatepicker class="form-control" ng-model="vm.model.person.dateOfBirth" />
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Place Of Birth
-                        </div>
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.placeOfBirth" class="form-control" />
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Identification Mark
+                            <div class="col-md-10">
+                                <input ng-model="vm.model.person.middleName" class="form-control" />
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.identificationMark" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            PAN Card Number
-                        </div>
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Last Name
+                            </div>
 
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.pan" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Adhaar Card Number
+                            <div class="col-md-10">
+                                <input name="lastName" ng-model="vm.model.person.lastName" class="form-control" ng-required="true" />
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <input ng-model="vm.model.person.adhaarCard" class="form-control" />
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="form-group" ng-repeat="attr in vm.model.person.personAttributes">
-                        <div class="col-md-2 control-label">
-                            {{attr.roleAttribute.description}}
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Date Of Birth
+                            </div>
+                            <div class="col-md-10">
+                                <input name="dateOfBirth" jqdatepicker class="form-control" ng-model="vm.model.person.dateOfBirth" ng-required="true" />
+                            </div>
                         </div>
 
 
-                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='string'">
-                            <input ng-model="attr.stringValue" class="form-control" />
-                        </div>
-                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='int'">
-                            <input ng-model="attr.intValue" class="form-control" />
-                        </div>
-                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='float'">
-                            <input ng-model="attr.floatValue" class="form-control" />
-                        </div>
-                        <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='date'">
-                            <input jqdatepicker class="form-control" ng-model="attr.dateValue" />
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Place Of Birth
+                            </div>
+                            <div class="col-md-10">
+                                <input ng-model="vm.model.person.placeOfBirth" class="form-control" />
+                            </div>
                         </div>
 
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Police Check Rquired
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Identification Mark
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="vm.model.person.identificationMark" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                PAN Card Number
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="vm.model.person.pan" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Adhaar Card Number
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="vm.model.person.adhaarCard" class="form-control" />
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <toggle-switch ng-model="vm.policeCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
+
+
+
+
+                        <div class="form-group" ng-repeat="attr in vm.model.person.personAttributes">
+                            <div class="col-md-2 control-label">
+                                {{attr.roleAttribute.description}}
+                            </div>
+
+
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='string'">
+                                <input ng-model="attr.stringValue" class="form-control" />
+                            </div>
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='int'">
+                                <input ng-model="attr.intValue" class="form-control" />
+                            </div>
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='float'">
+                                <input ng-model="attr.floatValue" class="form-control" />
+                            </div>
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='date'">
+                                <input jqdatepicker class="form-control" ng-model="attr.dateValue" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Police Check Rquired
+                            </div>
+
+                            <div class="col-md-10">
+                                <toggle-switch ng-model="vm.policeCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
 
                                 <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Civil Checks Rquired
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <toggle-switch ng-model="vm.civilCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
-                            <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
-                        </div>
-                    </div>
 
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Civil Checks Rquired
+                            </div>
 
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Creidt Check Rquired
-                        </div>
-
-                        <div class="col-md-10">
-                            <toggle-switch ng-model="vm.creditCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
-                            <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
-                        </div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Provide Identity Documents
+                            <div class="col-md-10">
+                                <toggle-switch ng-model="vm.civilCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
+                                <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Creidt Check Rquired
+                            </div>
+
+                            <div class="col-md-10">
+                                <toggle-switch ng-model="vm.creditCheckRequired" on-label="Yes" off-label="No"></toggle-switch>
+                                <!--<input ng-model="vm.model.policeCheckRequired" type="checkbox" data-toggle="toggle" data-height="28" data-on="Yes" data-off="No"/>-->
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Provide Identity Documents
+                            </div>
+
+                            <div class="col-md-10">
+                                <div ngf-drop ngf-select ng-model="vm.files" class="drop-box"
+                                     ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                                     accept="image/*,application/pdf"
+                                     ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+                                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                                Files:
+                                <ul>
+                                    <li ng-repeat="f in vm.files" style="font: smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+                                </ul>
+                                Upload Log:
+                                <pre>{{vm.log}}</pre>
+                            </div>
+                        </div>
+
+
+                        <!--<div>
+
+                            Drop File:
                             <div ngf-drop ngf-select ng-model="vm.files" class="drop-box"
                                  ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
                                  accept="image/*,application/pdf"
@@ -210,39 +228,24 @@
                             </ul>
                             Upload Log:
                             <pre>{{vm.log}}</pre>
+
+                        </div>-->
+                        
+
+                        <div class="alert alert-danger text-center" role="alert" ng-show="vm.error!=''">
+                            {{vm.error}}
                         </div>
+
+
+                        <button class="btn btn-primary btn-sm pull-right" ng-disabled="myForm.$invalid" ng-click="vm.saveRequest()" ng-hide="vm.success">Save</button>
                     </div>
-
-
-                    <!--<div>
-
-                        Drop File:
-                        <div ngf-drop ngf-select ng-model="vm.files" class="drop-box"
-                             ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
-                             accept="image/*,application/pdf"
-                             ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
-                        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-                        Files:
-                        <ul>
-                            <li ng-repeat="f in vm.files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-                        </ul>
-                        Upload Log:
-                        <pre>{{vm.log}}</pre>
-
-                    </div>-->
-
-
-                    <div class="alert alert-danger text-center" role="alert" ng-show="vm.error!=''">
-                        {{vm.error}}
-                    </div>
-
-
-                    <button class="btn btn-primary btn-md pull-right" ng-click="vm.saveRequest()" ng-hide="vm.success">Save</button>
                 </div>
             </div>
         </div>
+
+
+
+
     </div>
 
-
-</div>
-
+</form>

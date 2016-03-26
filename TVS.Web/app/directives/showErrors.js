@@ -1,4 +1,6 @@
-﻿
+﻿//http://blog.yodersolutions.com/bootstrap-form-validation-done-right-in-angularjs/
+//make sure elements have name and ng-required="true" . put  show-errors in form-group and wrap page in form
+
 
 app.directive('showErrors', function ($timeout) {
     return {
