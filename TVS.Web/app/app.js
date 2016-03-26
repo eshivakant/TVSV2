@@ -158,6 +158,7 @@ app.config(function ($routeProvider) {
     });
     $routeProvider.when("/reportmove", {
         controller: "tenantsReportMoveCtrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/dashboard/tenant/reportmove.html"
     });
     $routeProvider.when("/tscore", {

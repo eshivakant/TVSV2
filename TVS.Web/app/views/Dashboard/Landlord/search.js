@@ -26,7 +26,7 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
 
     $scope.showSearchPanel = function () {
         ModalService.showModal({
-            templateUrl: "app/views/ModalViews/personSearchModalx.html",
+            templateUrl: "app/views/ModalViews/personSearchModal.html",
             controller: 'personSrchModalCtrl',
             inputs: {
                 title: "Search Tenants..."

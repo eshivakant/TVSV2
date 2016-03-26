@@ -151,7 +151,7 @@
     <Content Include="app\views\Dashboard\Tenant\rateLandlord.html" />
     <Content Include="app\views\Dashboard\Tenant\rateLandlord.js" />
     <Content Include="app\views\Dashboard\Tenant\reportMove.html" />
-    <Content Include="app\views\Dashboard\Tenant\reportMove.js" />
+    <TypeScriptCompile Include="app\views\Dashboard\Tenant\reportMove.ts" />
     <Content Include="app\views\Dashboard\Tenant\score.html" />
     <Content Include="app\views\Dashboard\Tenant\score.js" />
     <Content Include="app\views\Dashboard\Tenant\search.html" />
@@ -160,7 +160,7 @@
     <Content Include="app\views\Jumbotron.html" />
     <Content Include="app\views\login.html" />
     <Content Include="app\views\ModalViews\ComplexController.js" />
-    <Content Include="app\views\ModalViews\personSearchModalx.html" />
+    <Content Include="app\views\ModalViews\personSearchModal.html" />
     <Content Include="app\views\ModalViews\personSrchRsltModal.html" />
     <Content Include="app\views\ModalViews\test.html" />
     <Content Include="app\views\orders.html" />

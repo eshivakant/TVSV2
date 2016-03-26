@@ -308,15 +308,24 @@ namespace TVS.API.Controllers
 
             if (model.Landlord?.FirstName != null)
             {
-                var landLord = new Person
+                Person landLord;
+                var isNewPerson = model.Landlord.Id == 0;
+
+                if (isNewPerson)
+                    landLord = new Person
+                    {
+                        Initial = model.Landlord.Initial,
+                        FirstName = model.Landlord.FirstName,
+                        MiddleName = model.Landlord.MiddleName,
+                        LastName = model.Landlord.LastName,
+                        PlaceOfBirth = "NA",
+                        DateOfBirth = TVS.API.Misc.Constants.SystemMinDate
+                    };
+                else
                 {
-                    Initial = model.Landlord.Initial,
-                    FirstName = model.Landlord.FirstName,
-                    MiddleName = model.Landlord.MiddleName,
-                    LastName = model.Landlord.LastName,
-                    PlaceOfBirth = "NA",
-                    DateOfBirth = TVS.API.Misc.Constants.SystemMinDate
-                };
+                    landLord = _context.People.First(p => p.Id == model.Landlord.Id);
+                }
+
 
                 landLord.AddressOwnerships.Add(new AddressOwnership
                 {
@@ -326,7 +335,9 @@ namespace TVS.API.Controllers
                   
                 });
 
-                _context.People.Add(landLord);
+                if (isNewPerson)
+                    _context.People.Add(landLord);
+
                 await _context.SaveChangesAsync();
             }
 

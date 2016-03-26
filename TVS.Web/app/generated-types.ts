@@ -36,6 +36,13 @@ module TVS.API.Models {
 		public modified: Date;
 		public size: number;
 	}
+	export class ReportMoveModel {
+		public hasEndDate: boolean;
+		public address: TVS.API.Entities.Address;
+		public moveInDate: Date;
+		public moveOutDate: Date;
+		public landlord: TVS.API.Entities.Person;
+	}
 	export class VerificationRequestDto {
 		public person: TVS.API.Entities.Person;
 		public verificationRequest: TVS.API.Entities.VerificationRequest;

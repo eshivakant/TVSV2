@@ -1,11 +1,16 @@
-﻿<div class="h1">Report Your Move</div>
+﻿
+<link href="../../../../content/css/infocard.css" rel="stylesheet" />
+
+
+
+<div class="h1">Report Your Move</div>
 <hr/>
 
 
 <div class="container">
 
 
-    <form class="form-horizontal">
+    <form name="myForm" class="form-horizontal">
         <div class="row setup-content" id="tstep-2">
             <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
                 <div>
@@ -14,53 +19,53 @@
                     <div class="table-bordered" style="padding: 5px; margin-bottom: 10px; background-color: whitesmoke">
                         <div class="h4" style="margin: 10px; text-align: center; font-weight: bold">What is your new address:</div>
                         <hr/>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">Address Line 1</div>
                             <div class="col-md-10">
-                                <input ng-model="model.address.addressLine1" class="form-control"/>
+                                <input name="addressLine1" ng-required="true" ng-model="vm.model.address.addressLine1" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-2 control-label">Address Line 2</div>
                             <div class="col-md-10">
-                                <input ng-model="model.address.addressLine2" class="form-control"/>
+                                <input ng-model="vm.model.address.addressLine2" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-2 control-label">Address Line 3</div>
                             <div class="col-md-10">
-                                <input ng-model="model.address.addressLine3" class="form-control"/>
+                                <input ng-model="vm.model.address.addressLine3" class="form-control"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">City</div>
                             <div class="col-md-10">
-                                <input ng-model="model.address.city" class="form-control"/>
+                                <input name="city" ng-required="true" ng-model="vm.model.address.city" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-2 control-label">State</div>
                             <div class="col-md-10">
-                                <input ng-model="model.address.state" class="form-control"/>
+                                <input name="state"  ng-model="vm.model.address.state" class="form-control"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">Pin Code</div>
                             <div class="col-md-10">
-                                <input ng-model="model.address.postCode" class="form-control"/>
+                                <input name="postCode" ng-required="true" ng-model="vm.model.address.postCode" class="form-control"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">Date of your move to this address</div>
                             <div class="col-md-10">
-                                <input jqdatepicker class="form-control" ng-model="model.moveInDate"/>
+                                <input name="moveInDate" ng-required="true" jqdatepicker class="form-control" ng-model="vm.model.moveInDate"/>
                             </div>
                         </div>
 
                         <div class="form-group" ng-show="model.hasEndDate='true'">
                             <div class="col-md-2 control-label">Date of moving out</div>
                             <div class="col-md-10">
-                                <input jqdatepicker class="form-control" ng-model="model.moveOutDate" placeholder="Don't fill if this is your new address"/>
+                                <input jqdatepicker class="form-control" ng-model="vm.model.moveOutDate" placeholder="Don't fill if this is your new address"/>
                             </div>
                         </div>
 
@@ -70,7 +75,7 @@
 
                     <div class="table-bordered" style="padding: 5px; margin-bottom: 10px; background-color: whitesmoke">
 
-                        <div class="h4" style="margin: 10px; text-align: center; font-weight: bold">Please fill below if you know the name of landlord of this address:</div>
+                        <div class="h4" style="margin: 10px; text-align: center; font-weight: bold">Please fill the name of landlord of this address:</div>
                         <hr />
 
                         <div class="form-group">
@@ -79,16 +84,16 @@
                             </div>
 
                             <div class="col-md-10">
-                                <input ng-model="model.landlord.initial" class="form-control" />
+                                <input ng-model="vm.model.landlord.initial" class="form-control" />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">
                                 First Name
                             </div>
                             <div class="col-md-10">
-                                <input ng-model="model.landlord.firstName" class="form-control" />
+                                <input  name="firstName" ng-required="true" ng-model="vm.model.landlord.firstName" class="form-control" />
                             </div>
                         </div>
 
@@ -98,17 +103,17 @@
                             </div>
 
                             <div class="col-md-10">
-                                <input ng-model="model.landlord.middleName" class="form-control" />
+                                <input ng-model="vm.model.landlord.middleName" class="form-control" />
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">
                                 Last Name
                             </div>
 
                             <div class="col-md-10">
-                                <input ng-model="model.landlord.lastName" class="form-control" />
+                                <input  name="lastName" ng-required="true" ng-model="vm.model.landlord.lastName" class="form-control" />
                             </div>
                         </div>
 
@@ -119,18 +124,18 @@
                     </div>
 
 
-                    <div class="alert alert-danger text-center" role="alert" ng-show="error!=''">
-                        {{error}}
+                    <div class="alert alert-danger text-center" role="alert" ng-show="vm.error!=''">
+                        {{vm.error}}
                     </div>
 
-                    <div class="alert alert-success text-center" role="alert" ng-show="info!=''">
-                        {{info}}
+                    <div class="alert alert-success text-center" role="alert" ng-show="vm.info!=''">
+                        {{vm.info}}
                     </div>
 
                     <hr />
 
                     <div class="row form-group">
-                        <button class="btn btn-primary btn-md pull-right row" ng-click="save()" style="margin: 15px">Save</button>
+                        <button class="btn btn-primary btn-md pull-right row" ng-click="vm.searchAndSave()"  ng-disabled="myForm.$invalid" style="margin: 15px">Save</button>
                     </div>
                 </div>
             </div>

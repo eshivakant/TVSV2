@@ -1,8 +1,10 @@
 ﻿using System;
+using DefinitelyTypedNet;
 using TVS.API.Entities;
 
 namespace TVS.API.Models
 {
+    [TypeScript]
     public class ReportMoveModel
     {
         public bool HasEndDate { get; set; }
