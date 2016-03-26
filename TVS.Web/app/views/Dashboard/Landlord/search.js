@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', function ($scope, $http, $location, $q, ngAuthSettings, personData) {
+app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'ModalService', function ($scope, $http, $location, $q, ngAuthSettings, personData, ModalService) {
     
     $scope.newPerson = {};
     $scope.searchResult = [];
@@ -10,12 +10,6 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
     $http.get(serviceBase + '/Api/Tenant/Template' + '?hash=100') //to avoid caching
         .then(function (response) {
             $scope.newPerson = response.data;
-            //$scope.getLandlordTemplate($q).then(function (result) {
-            //    var landlordTemplate = result;
-            //    for (var i = 0; i < $scope.newPerson.addressOccupations.length; i++) {
-            //        $scope.newPerson.addressOccupations[i].previousLandlord = JSON.parse(JSON.stringify(landlordTemplate));
-            //    }
-            //});
         });
 
     $scope.search = function() {
@@ -25,6 +19,24 @@ app.controller('landlordsSearchCtrl', ['$scope', '$http', '$location', '$q', 'ng
             });
 
         $scope.hideSearchPane = true;
+
+
+      
+    }
+
+    $scope.fuckyou = function () {
+        ModalService.showModal({
+            templateUrl: "app/views/ModalViews/personSearchModal.html",
+            controller: 'personSrchModalCtrl',
+            inputs: {
+                title: "A More Complex Example"
+            }
+    }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                $scope.yesNoResult = result;
+            });
+        });
     }
 
     $scope.showDetails=function(person) {

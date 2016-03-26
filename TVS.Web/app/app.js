@@ -1,4 +1,4 @@
-var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt', 'ngFileUpload', 'ui-notification', 'toggle-switch']);
+var app = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'angucomplete-alt', 'ngFileUpload', 'ui-notification', 'toggle-switch', 'angularModalService']);
 app.config(function ($routeProvider) {
     $routeProvider.when("/home", {
         controller: "homeController",
