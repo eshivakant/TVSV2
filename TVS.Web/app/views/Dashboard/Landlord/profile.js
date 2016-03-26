@@ -1,4 +1,3 @@
-app.controller(LandlordsProfileCtrl);
 var LandlordsProfileCtrl = (function () {
     function LandlordsProfileCtrl(scope, http, $location, $routeParams, $q, ngAuthSettings, personData) {
         var _this = this;
@@ -32,3 +31,5 @@ var LandlordsProfileCtrl = (function () {
     LandlordsProfileCtrl.$inject = ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData'];
     return LandlordsProfileCtrl;
 })();
+app.controller('LandlordsProfileCtrl', LandlordsProfileCtrl);
+//# sourceMappingURL=profile.js.map

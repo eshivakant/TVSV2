@@ -96,6 +96,7 @@
     <Content Include="app\directives\jsdatepicker.js" />
     <Content Include="app\directives\modal.js" />
     <Content Include="app\directives\personPartialView.js" />
+    <Content Include="app\directives\showErrors.js" />
     <Content Include="app\directives\startrating.js" />
     <Content Include="app\partialViews\personPartial.html" />
     <Content Include="app\services\authInterceptorService.js" />
@@ -160,6 +161,7 @@
     <Content Include="app\views\login.html" />
     <Content Include="app\views\ModalViews\ComplexController.js" />
     <Content Include="app\views\ModalViews\personSearchModal.html" />
+    <Content Include="app\views\ModalViews\personSrchRsltModal.html" />
     <Content Include="app\views\ModalViews\test.html" />
     <Content Include="app\views\orders.html" />
     <Content Include="app\views\refresh.html" />
@@ -204,6 +206,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <TypeScriptCompile Include="app\views\ModalViews\personSrchModalCtrl.ts" />
+    <TypeScriptCompile Include="app\views\ModalViews\personSrchRsltModalCtrl.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-component-router.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-cookies.d.ts" />

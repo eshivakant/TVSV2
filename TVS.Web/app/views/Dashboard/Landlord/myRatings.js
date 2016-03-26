@@ -1,4 +1,3 @@
-app.controller(landlordsMyRatingsCtrl);
 var landlordsMyRatingsCtrl = (function () {
     function landlordsMyRatingsCtrl(scope, http, location, $routeParams, q, ngAuthSettings, personData, upload, timeout) {
         this.scope = scope;
@@ -33,3 +32,5 @@ var landlordsMyRatingsCtrl = (function () {
     landlordsMyRatingsCtrl.$inject = ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout'];
     return landlordsMyRatingsCtrl;
 })();
+app.controller('landlordsMyRatingsCtrl', landlordsMyRatingsCtrl);
+//# sourceMappingURL=myRatings.js.map

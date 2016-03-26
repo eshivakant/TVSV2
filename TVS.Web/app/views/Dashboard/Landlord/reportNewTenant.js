@@ -1,6 +1,5 @@
-app.controller(landlordsReportNewTenantCtrl);
 var landlordsReportNewTenantCtrl = (function () {
-    function landlordsReportNewTenantCtrl(scope, http, location, q, ngAuthSettings, personData, upload, timeout, Notification) {
+    function landlordsReportNewTenantCtrl(scope, http, location, q, ngAuthSettings, personData, upload, timeout, Notification, ModalService) {
         var _this = this;
         this.scope = scope;
         this.http = http;
@@ -11,11 +10,13 @@ var landlordsReportNewTenantCtrl = (function () {
         this.upload = upload;
         this.timeout = timeout;
         this.Notification = Notification;
+        this.ModalService = ModalService;
         this.error = "";
         this.log = "";
         this.success = false;
         this.person = new TVS.API.Entities.Person();
         this.serviceBase = ngAuthSettings.apiServiceBaseUri;
+        this.proceedToSave = false;
         this.http.get(serviceBase + '/api/landlord/myaddresses?hash=' + Math.random())
             .then(function (response) {
             _this.addresses = response.data;
@@ -23,6 +24,39 @@ var landlordsReportNewTenantCtrl = (function () {
             _this.Notification.error({ message: 'Could not retrieve your owned addresses. Please try later.', delay: 1000 });
         });
     }
+    landlordsReportNewTenantCtrl.prototype.showSearchPanel = function () {
+        var _this = this;
+        this.ModalService.showModal({
+            templateUrl: "app/views/ModalViews/personSrchRsltModal.html",
+            controller: 'personSrchRsltModalCtrl',
+            controllerAs: 'vm',
+            inputs: {
+                title: "Search Tenants...",
+                people: this.searchResult
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                if (result != null)
+                    _this.person = result;
+                _this.proceedToSave = true;
+            });
+        });
+    };
+    landlordsReportNewTenantCtrl.prototype.searchAndSave = function () {
+        var _this = this;
+        this.http.post(serviceBase + '/api/Search/Landlord/Search', this.person)
+            .then(function (response) {
+            _this.searchResult = response.data;
+            if (_this.proceedToSave === false && _this.searchResult != undefined && _this.searchResult != null && _this.searchResult.length > 0) {
+                _this.showSearchPanel();
+                return;
+            }
+            else {
+                _this.saveRequest();
+            }
+        });
+    };
     landlordsReportNewTenantCtrl.prototype.saveRequest = function () {
         var _this = this;
         if (this.selectedAddressId == undefined || this.selectedAddressId == 0) {
@@ -48,13 +82,17 @@ var landlordsReportNewTenantCtrl = (function () {
         });
     };
     landlordsReportNewTenantCtrl.prototype.fullAddress = function (address) {
-        //var add = address.addressLine1 + ', ' + address.addressLine2 + ', ' + address.addressLine3 + ', ' + address.city + ', ' + address.state;
-        //if (address.postCode != undefined && address.postCode != null && address.postCode !== '') add = add + ', ' + address.postCode;
-        //add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
-        //return add;
         var commonFunc = new Helpers.CommonFunctions();
         return commonFunc.fullAddress(address);
     };
-    landlordsReportNewTenantCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
+    landlordsReportNewTenantCtrl.prototype.clearForm = function () {
+        this.person = new TVS.API.Entities.Person();
+        this.proceedToSave = false;
+        this.selectedAddressId = undefined;
+        this.scope.$broadcast('show-errors-reset');
+    };
+    landlordsReportNewTenantCtrl.$inject = ['$scope', '$http', '$location', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification', 'ModalService'];
     return landlordsReportNewTenantCtrl;
 })();
+app.controller('landlordsReportNewTenantCtrl', landlordsReportNewTenantCtrl);
+//# sourceMappingURL=reportNewTenant.js.map

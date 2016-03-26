@@ -8,6 +8,12 @@ module Helpers {
             return add;
         }
 
+        public fullName(person) {
+            if (person.middleName == undefined) person.middleName = "";
+            var name = person.initial + " " + person.firstName + " " + person.middleName + " " + person.lastName;
+            return name.replace("  ", " ").replace("null", "").replace("  ", " ").replace(",,", ",").replace(", ,", ",");
+        }
+
         public getScoreText(score: number) {
 
             if (score <= 1)

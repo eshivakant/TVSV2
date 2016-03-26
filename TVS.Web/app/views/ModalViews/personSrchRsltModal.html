@@ -1,0 +1,79 @@
+﻿
+<div id="modal-content" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>{{vm.title}}</h3>
+                <h4><b>
+                        Hmmm.. Looks like this is one these person?
+                        <br/>If yes, click on the person to select.
+                        <br/>If no, or if you are not sure, then press Continue with Manual Entry.
+                    </b>
+                </h4>
+
+            </div>
+            <div class="modal-body" style="max-height: calc(70vh);overflow-y: auto;">
+                <div class="row layout-margin-md" >
+                    <div class="[ col-sm-6 col-md-3 col-lg-2]" ng-repeat="person in vm.searchResult">
+                        <div class="[ info-card ]" ng-click="vm.select(person)"  data-dismiss="modal">
+                            <img style="width: 100%" src="https://www.icsi.berkeley.edu/icsi/sites/default/files/staff_photos/generic_avatar.jpg" />
+                            <div class="[ info-card-details ] animate" style="cursor: pointer">
+                                <div class="[ info-card-header ]">
+                                    <h3> {{vm.fullName(person)}} </h3>                                    
+                                </div>
+                                <div class="[ info-card-detail ]">
+                                    <!-- Description -->
+                                    <p>
+                                        Born at {{tenant.placeOfBirth| ifEmpty:'NA'}} on {{tenant.dateOfBirth| date:'mediumDate' | ifEmpty:'NA'}} . PAN #{{tenant.pan| ifEmpty:'NA'}} and Adhaar #{{tenant.adhaarCard| ifEmpty:'NA'}}.
+
+
+
+                                        <span ng-repeat="attr in tenant.personAttributes">
+
+                                            {{attr.roleAttribute.description}} is
+
+
+                                            <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='string'">
+                                                {{attr.stringValue}}
+                                            </span>
+                                            <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='int'">
+                                                {{attr.intValue}}
+                                            </span>
+                                            <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='float'">
+                                                {{attr.floatValue}}
+                                            </span>
+                                            <span class="col-md-3" ng-show="attr.roleAttribute.valueType=='date'">
+                                                {{attr.dateValue}}
+                                            </span>
+
+                                        </span>
+
+
+
+                                    </p>
+                                    <div class="social">
+                                        <a href="https://www.facebook.com/rem.mcintosh" class="[ social-icon facebook ] animate"><span class="fa fa-facebook"></span></a>
+
+                                        <a href="https://twitter.com/Mouse0270" class="[ social-icon twitter ] animate"><span class="fa fa-twitter"></span></a>
+
+                                        <!--<a href="https://github.com/mouse0270" class="[ social-icon github ] animate"><span class="fa fa-github-alt"></span></a>-->
+                                        <!--<a href="https://plus.google.com/u/0/115077481218689845626/posts" class="[ social-icon google-plus ] animate"><span class="fa fa-google-plus"></span></a>-->
+
+                                        <a href="www.linkedin.com/in/remcintosh/" class="[ social-icon linkedin ] animate"><span class="fa fa-linkedin"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" ng-click="vm.cancel()" data-dismiss="modal">Continue with Manual Entry</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

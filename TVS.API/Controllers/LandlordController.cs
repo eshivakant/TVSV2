@@ -124,12 +124,26 @@ namespace TVS.API.Controllers
         {
             try
             {
-                foreach (var addressOccupation in person.AddressOccupations)
+
+                if (person.Id == 0)
                 {
-                    addressOccupation.Address = null;
+
+                    foreach (var addressOccupation in person.AddressOccupations)
+                    {
+                        addressOccupation.Address = null;
+                    }
+
+                    _context.People.Add(person);
                 }
 
-                _context.People.Add(person);
+                else
+                {
+                    var dbPerson = _context.People.FirstOrDefault(p => p.Id == person.Id);
+                    foreach (var addressOccupation in person.AddressOccupations)
+                    {
+                        dbPerson?.AddressOccupations.Add(addressOccupation);
+                    }
+                }
 
                 await _context.SaveChangesAsync();
                 return Ok();

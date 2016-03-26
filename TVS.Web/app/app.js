@@ -197,3 +197,4 @@ app.filter('ifEmpty', function () { return function (input, defaultValue) {
     return input;
 }; });
 app.config(function (NotificationProvider) { NotificationProvider.setOptions({ delay: 10000, startTop: 20, startRight: 10, verticalSpacing: 20, horizontalSpacing: 20, positionX: 'right', positionY: 'bottom' }); });
+//# sourceMappingURL=app.js.map

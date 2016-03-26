@@ -1,6 +1,4 @@
-﻿app.controller(LandlordsAddNewAddressCtrl);
-
-class LandlordsAddNewAddressCtrl {
+﻿class LandlordsAddNewAddressCtrl {
     public success: boolean;
     public error: string;
     public person: TVS.API.Entities.Person;
@@ -68,11 +66,6 @@ class LandlordsAddNewAddressCtrl {
     }
 
     public fullAddress(address: TVS.API.Entities.Address): string {
-        //var add = address.addressLine1 + ', ' + address.addressLine2 + ', ' + address.addressLine3 + ', ' + address.city + ', ' + address.state;
-        //if (address.postCode != undefined && address.postCode != null && address.postCode !== '') add = add + ', ' + address.postCode;
-        //add = add.replace("  ", " ").replace(",,", ",").replace(", ,", ",");
-        //return add;
-
         var commonFunc = new Helpers.CommonFunctions();
         return commonFunc.fullAddress(address);
     }
@@ -81,3 +74,5 @@ class LandlordsAddNewAddressCtrl {
 
 }
 
+
+app.controller('LandlordsAddNewAddressCtrl', LandlordsAddNewAddressCtrl);

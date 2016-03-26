@@ -1,47 +1,159 @@
-﻿<div class="container">
+﻿
+<link href="../../../../content/css/infocard.css" rel="stylesheet" />
 
 
 
-    <div class="row setup-content">
-        <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
-            <div>
-
-                <div class="h1">Report A New Tenant</div>
-                <hr />
-
-                <div class="alert alert-info text-center" role="alert">Please fill in the details of the person for whom you will like to do a police verification. Please provide as much infarmation as you have.</div>
+<form name="myForm" novalidate>
+    <div class="container">
 
 
-                <div class="form-horizontal">
 
-                    <div ng-include src="'app/partialViews/personPartial.html'">
-                    </div>
+        <div class="row setup-content">
+            <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
+                <div>
 
-                    <div class="form-group">
-                        <div class="col-md-2 control-label">
-                            Select address
+                    <div class="h1">Report New Tenant</div>
+                    <hr />
+
+                    <div class="alert alert-info text-center" role="alert">Please fill in the details of the person for whom you will like to do a police verification. Please provide as much infarmation as you have.</div>
+
+
+                    <div class="form-horizontal">
+
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Initial
+                            </div>
+
+                            <div class="col-md-10" >
+                                <input name="initial" ng-model="vm.person.initial" class="form-control" ng-required="true" />
+                            </div>
                         </div>
 
-                        <div class="col-md-10">
-                            <select class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.selectedAddressId" ng-options="t.id as vm.fullAddress(t) for t in vm.addresses">
-                            </select>
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                First Name
+                            </div>
+                            <div class="col-md-10">
+                                <input name="firstName" ng-model="vm.person.firstName" class="form-control" ng-required="true"/>
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Middle Name
+                            </div>
+
+                            <div class="col-md-10">
+                                <input name="middlename" ng-model="vm.person.middleName" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Last Name
+                            </div>
+
+                            <div class="col-md-10">
+                                <input name="lastname" ng-model="vm.person.lastName" class="form-control" ng-required="true"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Date Of Birth
+                            </div>
+                            <div class="col-md-10">
+                                <input jqdatepicker class="form-control" ng-model="vm.person.dateOfBirth" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Place Of Birth
+                            </div>
+                            <div class="col-md-10">
+                                <input ng-model="vm.person.placeOfBirth" class="form-control" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Identification Mark
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="vm.person.identificationMark" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                PAN Card Number
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="vm.person.pan" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Adhaar Card Number
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="vm.person.adhaarCard" class="form-control" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" ng-repeat="attr in vm.person.personAttributes">
+                            <div class="col-md-2 control-label">
+                                {{attr.roleAttribute.description}}
+                            </div>
+
+
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='string'">
+                                <input ng-model="attr.stringValue" class="form-control" />
+                            </div>
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='int'">
+                                <input ng-model="attr.intValue" class="form-control" />
+                            </div>
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='float'">
+                                <input ng-model="attr.floatValue" class="form-control" />
+                            </div>
+                            <div class="col-md-10" ng-show="attr.roleAttribute.valueType=='date'">
+                                <input jqdatepicker class="form-control" ng-model="attr.dateValue" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Select address
+                            </div>
+
+                            <div class="col-md-10">
+                                <select ng-required="true" class="form-control" name="repeatSelect" id="repeatSelect" ng-model="vm.selectedAddressId" ng-options="t.id as vm.fullAddress(t) for t in vm.addresses"></select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="alert alert-danger text-center" role="alert" ng-show="vm.error!=''">
+                            {{vm.error}}
+                        </div>
+
+                        
+                        <button type="submit" class="btn btn-primary btn-sm pull-right" ng-click="vm.searchAndSave()" ng-disabled="myForm.$invalid" ng-hide="vm.success" style="margin-left: 10px">Save</button>
+                        <button class="btn btn-default btn-sm pull-right" ng-click="vm.clearForm()" ng-hide="vm.success">Clear Form</button>
+
                     </div>
-
-
-
-                    <div class="alert alert-danger text-center" role="alert" ng-show="vm.error!=''">
-                        {{vm.error}}
-                    </div>
-
-
-                    <button class="btn btn-primary btn-md pull-right" ng-click="vm.saveRequest()" ng-hide="vm.success">Save</button>
                 </div>
             </div>
         </div>
+
     </div>
 
-
-</div>
-
-
+</form>

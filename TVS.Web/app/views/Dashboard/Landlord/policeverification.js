@@ -1,4 +1,3 @@
-app.controller(LandlordsPoliceVerificationCtrl);
 var LandlordsPoliceVerificationCtrl = (function () {
     function LandlordsPoliceVerificationCtrl(scope, http, location, $routeParams, q, ngAuthSettings, personData, upload, timeout, Notification) {
         var _this = this;
@@ -86,3 +85,5 @@ var LandlordsPoliceVerificationCtrl = (function () {
     LandlordsPoliceVerificationCtrl.$inject = ['$scope', '$http', '$location', '$routeParams', '$q', 'ngAuthSettings', 'personData', 'Upload', '$timeout', 'Notification'];
     return LandlordsPoliceVerificationCtrl;
 })();
+app.controller('LandlordsPoliceVerificationCtrl', LandlordsPoliceVerificationCtrl);
+//# sourceMappingURL=policeverification.js.map
