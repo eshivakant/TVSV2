@@ -49,22 +49,22 @@ namespace TVS.API.Controllers
             {
                 queryResult = queryResult.Where(p => p.LastName == person.LastName);
             }
-            if (!string.IsNullOrEmpty(person.PAN))
-            {
-                queryResult = queryResult.Where(p => p.PAN == person.PAN);
-            }
-            if (!string.IsNullOrEmpty(person.AdhaarCard))
-            {
-                queryResult = queryResult.Where(p => p.AdhaarCard == person.AdhaarCard);
-            }
-            if (!string.IsNullOrEmpty(person.PlaceOfBirth))
-            {
-                queryResult = queryResult.Where(p => p.PlaceOfBirth == person.PlaceOfBirth);
-            }
-            if (person.DateOfBirth != null && person.DateOfBirth < DateTime.Today.AddYears(-16)) //ignore this for young
-            {
-                queryResult = queryResult.Where(p => p.DateOfBirth.Value > person.DateOfBirth.Value.AddDays(-2) && p.DateOfBirth < person.DateOfBirth.Value.AddDays(2));
-            }
+            //if (!string.IsNullOrEmpty(person.PAN))
+            //{
+            //    queryResult = queryResult.Where(p => p.PAN == person.PAN);
+            //}
+            //if (!string.IsNullOrEmpty(person.AdhaarCard))
+            //{
+            //    queryResult = queryResult.Where(p => p.AdhaarCard == person.AdhaarCard);
+            //}
+            //if (!string.IsNullOrEmpty(person.PlaceOfBirth))
+            //{
+            //    queryResult = queryResult.Where(p => p.PlaceOfBirth == person.PlaceOfBirth);
+            //}
+            //if (person.DateOfBirth != null && person.DateOfBirth < DateTime.Today.AddYears(-16)) //ignore this for young
+            //{
+            //    queryResult = queryResult.Where(p => p.DateOfBirth.Value > person.DateOfBirth.Value.AddDays(-2) && p.DateOfBirth < person.DateOfBirth.Value.AddDays(2));
+            //}
 
             //queryResult = queryResult.Where(q => q.AddressOwnerships.Any()); //todo: filter down
 

@@ -14,6 +14,42 @@ module Helpers {
             return name.replace("  ", " ").replace("null", "").replace("  ", " ").replace(",,", ",").replace(", ,", ",");
         }
 
+        public copyNonEmptyPersonAttributes(source: TVS.API.Entities.Person, dest: TVS.API.Entities.Person) {
+            if (source.id !== 0)
+                dest.id = source.id;
+
+            if (!this.isNullOrNA(source.initial))
+                dest.initial = source.initial;
+
+            if (!this.isNullOrNA(source.firstName))
+                dest.firstName = source.firstName;
+
+            if (!this.isNullOrNA(source.middleName))
+                dest.middleName = source.middleName;
+
+            if (!this.isNullOrNA(source.lastName))
+                dest.lastName = source.lastName;
+
+            if (!this.isNullOrNA(source.dateOfBirth))
+                dest.dateOfBirth = source.dateOfBirth;
+
+            if (!this.isNullOrNA(source.placeOfBirth))
+                dest.placeOfBirth = source.placeOfBirth;
+
+            if (!this.isNullOrNA(source.pan))
+                dest.pan = source.pan;
+
+            if (!this.isNullOrNA(source.adhaarCard))
+                dest.adhaarCard = source.adhaarCard;
+
+            if (!this.isNullOrNA(source.identificationMark))
+                dest.identificationMark = source.identificationMark;
+        }
+
+        private isNullOrNA(val:any): boolean {
+            return val === undefined || val === null || val === "" || val === "NA";
+        }
+
         public getScoreText(score: number) {
 
             if (score <= 1)

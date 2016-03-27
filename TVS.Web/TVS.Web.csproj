@@ -170,9 +170,12 @@
     <Content Include="app\views\Register\Landlord\Step3.html" />
     <Content Include="app\views\Register\Landlord\Step2.html" />
     <Content Include="app\views\Register\Landlord\Step1.html" />
+    <TypeScriptCompile Include="app\views\Register\Tenant\Step1.ts" />
     <Content Include="app\views\Register\Tenant\Step1.html" />
     <Content Include="app\views\Register\Tenant\Step2.html" />
+    <TypeScriptCompile Include="app\views\Register\Tenant\Step2.ts" />
     <Content Include="app\views\Register\Tenant\Step3.html" />
+    <Content Include="app\views\Register\Tenant\Step3.js" />
     <Content Include="app\views\tsignup.html" />
     <Content Include="app\views\signup.html" />
     <Content Include="app\views\tokens.html" />

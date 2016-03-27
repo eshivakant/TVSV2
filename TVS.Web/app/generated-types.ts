@@ -30,6 +30,19 @@ module TVS.API.Models {
 		public parameterDesc: string;
 		public score: number;
 	}
+	export class TenantRegistration {
+		public person: TVS.API.Entities.Person;
+		public previousLandlords: Array<TVS.API.Entities.Person>;
+	}
+	export class PersonAddressFlatModel {
+		public person: TVS.API.Entities.Person;
+		public address: TVS.API.Entities.Address;
+		public ownedFrom: Date;
+		public ownedTo: Date;
+		public occupiedFrom: Date;
+		public occupiedTo: Date;
+		public searchDone: boolean;
+	}
 	export class PhotoViewModel {
 		public name: string;
 		public created: Date;

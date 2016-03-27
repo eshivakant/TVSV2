@@ -76,4 +76,3 @@ var tenantsReportMoveCtrl = (function () {
     return tenantsReportMoveCtrl;
 })();
 app.controller('tenantsReportMoveCtrl', tenantsReportMoveCtrl);
-//# sourceMappingURL=reportMove.js.map

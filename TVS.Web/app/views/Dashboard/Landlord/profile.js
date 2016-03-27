@@ -32,4 +32,3 @@ var LandlordsProfileCtrl = (function () {
     return LandlordsProfileCtrl;
 })();
 app.controller('LandlordsProfileCtrl', LandlordsProfileCtrl);
-//# sourceMappingURL=profile.js.map

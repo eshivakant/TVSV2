@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DefinitelyTypedNet;
+using TVS.API.Entities;
 
 namespace TVS.API.Models
 {
@@ -41,5 +43,27 @@ namespace TVS.API.Models
         public string Parameter { get; set; }
         public string ParameterDesc { get; set; }
         public int Score { get; set; }
+    }
+
+
+    [TypeScript]
+    public class TenantRegistration
+    {
+        public Person Person { get; set; }
+        public List<Person> PreviousLandlords { get; set; }
+    }
+
+    [TypeScript]
+    public class PersonAddressFlatModel
+    {
+        public Person Person { get; set; }
+        public Address Address { get; set; }
+        public DateTime OwnedFrom { get; set; }
+        public DateTime OwnedTo { get; set; }
+        public DateTime OccupiedFrom { get; set; }
+        public DateTime OccupiedTo { get; set; }
+
+        public bool SearchDone { get; set; }
+
     }
 }

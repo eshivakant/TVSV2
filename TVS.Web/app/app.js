@@ -41,17 +41,19 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/Register/landlord/step3.html"
     });
     $routeProvider.when("/tsignup1", {
-        controller: "signUpTenantController",
+        controller: "signUpTenantStep1Ctrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/Register/tenant/step1.html"
     });
     $routeProvider.when("/tsignup2", {
-        controller: "signUpTenantController",
+        controller: "signUpTenantStep2Ctrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/Register/tenant/step2.html"
     });
-    $routeProvider.when("/tsignup3", {
-        controller: "signUpTenantController",
-        templateUrl: "/app/views/Register/tenant/step3.html"
-    });
+    //$routeProvider.when("/tsignup3", {
+    //    controller: "signUpTenantController",
+    //    templateUrl: "/app/views/Register/tenant/step3.html"
+    //});
     $routeProvider.when("/orders", {
         controller: "ordersController",
         templateUrl: "/app/views/orders.html"
@@ -198,4 +200,3 @@ app.filter('ifEmpty', function () { return function (input, defaultValue) {
     return input;
 }; });
 app.config(function (NotificationProvider) { NotificationProvider.setOptions({ delay: 10000, startTop: 20, startRight: 10, verticalSpacing: 20, horizontalSpacing: 20, positionX: 'right', positionY: 'bottom' }); });
-//# sourceMappingURL=app.js.map

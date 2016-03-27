@@ -71,7 +71,7 @@ namespace TVS.API.Controllers
                     new AddressOccupation {Address = new Address {AddressLine1 = "Line 1", City = "City", PostCode = "Pin"}, OccupiedFrom = DateTime.Today, OccupiedTo = DateTime.Today}
                 };
 
-            
+
 
             return Ok(person);
         }
@@ -164,15 +164,15 @@ namespace TVS.API.Controllers
 
                 if (ModelState.IsValid)
                 {
-                   
+
                     foreach (var domainAspnetPersonMap in person.DomainAspnetPersonMaps)
                     {
-                        if(domainAspnetPersonMap.Id==0)
+                        if (domainAspnetPersonMap.Id == 0)
                             _context.DomainAspnetPersonMaps.AddOrUpdate(domainAspnetPersonMap);
                         if (domainAspnetPersonMap.Id != 0)
                         {
                             var dbObj = _context.DomainAspnetPersonMaps.First(o => o.Id == domainAspnetPersonMap.Id);
-                            EfMapper.Map(domainAspnetPersonMap,dbObj);
+                            EfMapper.Map(domainAspnetPersonMap, dbObj);
                         }
                     }
                     await _context.SaveChangesAsync();
@@ -233,6 +233,43 @@ namespace TVS.API.Controllers
         }
 
 
+        [Route("RegisterStep2")]
+        [HttpPost]
+        public async Task<IHttpActionResult> RegisterStep2([FromBody] TenantRegistration tReg)
+        {
+            try
+            {
+                if (tReg.Person.Id == 0) throw new Exception("Error updating...");
+
+                var dbPerson = await _context.People.FirstOrDefaultAsync(p => p.Id == tReg.Person.Id);
+
+                if (dbPerson == null) return NotFound();
+
+                foreach (var previousLandlord in tReg.PreviousLandlords)
+                {
+                    var l = await _context.People.FirstOrDefaultAsync(p => p.Id == previousLandlord.Id);
+                    if (l == null)
+                        _context.People.Add(previousLandlord);
+                    else
+                    {
+                        if (previousLandlord.AddressOwnerships.Any())
+                            l.AddressOwnerships.Add(previousLandlord.AddressOwnerships.First());
+                    }
+
+                }
+
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+
+            return Ok();
+        }
+
 
         [Route("SaveLandlord")]
         [HttpPost]
@@ -273,8 +310,8 @@ namespace TVS.API.Controllers
         public IHttpActionResult MoveTemplate(string hash)
         {
             var model = new ReportMoveModel();
-            model.Address=new Address {AddressLine1 = "Test"};
-            model.Landlord = new Person() {LastName = "Test"};
+            model.Address = new Address { AddressLine1 = "Test" };
+            model.Landlord = new Person() { LastName = "Test" };
             return Ok(model);
         }
 
@@ -332,7 +369,7 @@ namespace TVS.API.Controllers
                     AddressId = newAddressOccupation.AddressId,
                     OwnedFrom = newAddressOccupation.OccupiedFrom,
                     OwnedTo = newAddressOccupation.OccupiedTo
-                  
+
                 });
 
                 if (isNewPerson)
@@ -379,7 +416,9 @@ namespace TVS.API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet][Route("GetTenant")]public async Task<IHttpActionResult> GetById(long id)
+        [HttpGet]
+        [Route("GetTenant")]
+        public async Task<IHttpActionResult> GetById(long id)
         {
             try
             {
