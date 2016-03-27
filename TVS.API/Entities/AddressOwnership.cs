@@ -15,7 +15,7 @@ namespace TVS.API.Entities
         public long PersonId { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime OwnedFrom { get; set; }
+        public DateTime? OwnedFrom { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? OwnedTo { get; set; }

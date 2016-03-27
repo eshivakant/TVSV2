@@ -41,10 +41,8 @@ namespace TVS.API.Entities
         public string LastName { get; set; }
 
         [Column(TypeName = "date")]
-        [Required]
         public DateTime? DateOfBirth { get; set; }
 
-        [Required]
         [StringLength(250)]
         public string PlaceOfBirth { get; set; }
 

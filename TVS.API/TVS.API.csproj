@@ -187,13 +187,9 @@
     <Compile Include="Entities\RoleParameter.cs" />
     <Compile Include="Entities\VerificationRequest.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201603191209202_AppDbContext.cs" />
-    <Compile Include="Migrations\201603191209202_AppDbContext.Designer.cs">
-      <DependentUpon>201603191209202_AppDbContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603191513388_AppDbContext1.cs" />
-    <Compile Include="Migrations\201603191513388_AppDbContext1.Designer.cs">
-      <DependentUpon>201603191513388_AppDbContext1.cs</DependentUpon>
+    <Compile Include="Migrations\201603271628232_AppDbContext.cs" />
+    <Compile Include="Migrations\201603271628232_AppDbContext.Designer.cs">
+      <DependentUpon>201603271628232_AppDbContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Misc\Constants.cs" />
@@ -235,11 +231,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603191209202_AppDbContext.resx">
-      <DependentUpon>201603191209202_AppDbContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603191513388_AppDbContext1.resx">
-      <DependentUpon>201603191513388_AppDbContext1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603271628232_AppDbContext.resx">
+      <DependentUpon>201603271628232_AppDbContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

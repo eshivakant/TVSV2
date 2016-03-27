@@ -33,3 +33,4 @@ var tenantsMyRatingsCtrl = (function () {
     return tenantsMyRatingsCtrl;
 })();
 app.controller('tenantsMyRatingsCtrl', tenantsMyRatingsCtrl);
+//# sourceMappingURL=myRatings.js.map

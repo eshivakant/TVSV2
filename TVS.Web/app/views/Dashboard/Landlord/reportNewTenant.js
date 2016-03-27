@@ -95,3 +95,4 @@ var landlordsReportNewTenantCtrl = (function () {
     return landlordsReportNewTenantCtrl;
 })();
 app.controller('landlordsReportNewTenantCtrl', landlordsReportNewTenantCtrl);
+//# sourceMappingURL=reportNewTenant.js.map

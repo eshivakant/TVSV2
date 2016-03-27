@@ -29,7 +29,7 @@ namespace TVS.API.Migrations
                         AddressId = c.Long(nullable: false),
                         PersonId = c.Long(nullable: false),
                         Rent = c.Decimal(precision: 18, scale: 2),
-                        OccupiedFrom = c.DateTime(nullable: false, storeType: "date"),
+                        OccupiedFrom = c.DateTime(storeType: "date"),
                         OccupiedTo = c.DateTime(storeType: "date"),
                     })
                 .PrimaryKey(t => t.Id)
@@ -47,8 +47,8 @@ namespace TVS.API.Migrations
                         FirstName = c.String(nullable: false, maxLength: 250),
                         MiddleName = c.String(maxLength: 250),
                         LastName = c.String(nullable: false, maxLength: 250),
-                        DateOfBirth = c.DateTime(nullable: false, storeType: "date"),
-                        PlaceOfBirth = c.String(nullable: false, maxLength: 250),
+                        DateOfBirth = c.DateTime(storeType: "date"),
+                        PlaceOfBirth = c.String(maxLength: 250),
                         AdhaarCard = c.String(maxLength: 50),
                         PAN = c.String(maxLength: 50),
                         IdentificationMark = c.String(maxLength: 250),
@@ -62,7 +62,7 @@ namespace TVS.API.Migrations
                         Id = c.Long(nullable: false, identity: true),
                         AddressId = c.Long(nullable: false),
                         PersonId = c.Long(nullable: false),
-                        OwnedFrom = c.DateTime(nullable: false, storeType: "date"),
+                        OwnedFrom = c.DateTime(storeType: "date"),
                         OwnedTo = c.DateTime(storeType: "date"),
                     })
                 .PrimaryKey(t => t.Id)
@@ -303,6 +303,9 @@ namespace TVS.API.Migrations
                         WhoIsRequesting = c.String(),
                         PersonId = c.Long(nullable: false),
                         RequestorId = c.Long(nullable: false),
+                        CrimeCheck = c.Boolean(nullable: false),
+                        CivilCheck = c.Boolean(nullable: false),
+                        CreditCheck = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

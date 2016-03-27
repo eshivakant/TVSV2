@@ -78,8 +78,9 @@ class signUpTenantStep2Ctrl {
 
 
     public searchAndSave() {
-        var m = this.flatModels[0];
+        var m: TVS.API.Models.PersonAddressFlatModel;
         for (var i = 0; i < this.flatModels.length; i++) {
+            m = this.flatModels[i];
             if (m.searchDone) continue;
             m = this.flatModels[i];
         }
@@ -88,7 +89,7 @@ class signUpTenantStep2Ctrl {
             .then((response) => {
                 this.searchResult = <Array<TVS.API.Entities.Person>>response.data;
 
-                if (m.searchDone === false && this.searchResult != undefined && this.searchResult != null && this.searchResult.length > 0) {
+                if (!m.searchDone && this.searchResult != undefined && this.searchResult != null && this.searchResult.length > 0) {
                     this.showSearchPanel(m);
                     return;
                 } else {
@@ -115,9 +116,10 @@ class signUpTenantStep2Ctrl {
         }
         
         this.http.post(serviceBase + '/Api/Tenant/RegisterStep2', this.tRegModel)
-            .success(response=> {
-                this.tRegModel.person = <TVS.API.Entities.Person>response;
-                this.location.path('/tsignup2');
+            .success(()=> {
+                this.Notification({ message: 'Success', title: 'profile updated successfully!' });
+                this.location.path('/tenanthome');
+
             })
             .error(() => { this.Notification.error({ message: 'Server Error Ocurred!', delay: 1000 }) });
         
@@ -135,8 +137,9 @@ class signUpTenantStep2Ctrl {
     }
 
     public searchAndAddNewAddressOccupation() {
-        var m = this.flatModels[0];
+        var m: TVS.API.Models.PersonAddressFlatModel;
         for (var i = 0; i < this.flatModels.length; i++) {
+            m = this.flatModels[i];
             if (m.searchDone) continue;
             m = this.flatModels[i];
         }

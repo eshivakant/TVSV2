@@ -17,7 +17,7 @@ namespace TVS.API.Entities
         public decimal? Rent { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime OccupiedFrom { get; set; }
+        public DateTime? OccupiedFrom { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? OccupiedTo { get; set; }
