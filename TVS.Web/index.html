@@ -17,151 +17,164 @@
 
 
     <!--<link href="content/css/animate.css" rel="stylesheet" />-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+  
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="indexController">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                </button>
-                <a class="navbar-brand" href="#/">Home</a>
-            </div>
-            <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
-                <ul class="nav navbar-nav navbar-right">
-                    <li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
-                    <li data-ng-hide="!authentication.isAuth"><a href="#/postLogin">My Dashboard</a></li>
-                    <!--<li data-ng-hide="!authentication.isAuth"><a href="#/refresh">Refresh Token</a></li>-->
-                    <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/login">Login</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
-                </ul>
-            </div>
 
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="indexController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" style="color: white" data-target="#myNavbar">
+                <i class="fa fa-bars"></i>
+            </button>-->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/"><i class="fa fa-home"></i> Home</a>
         </div>
-    </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li data-ng-hide="!authentication.isAuth"><a href="#"><i class="fa fa-user"></i> Welcome {{authentication.userName}}</a></li>
+                <li data-ng-hide="!authentication.isAuth"><a href="#/postLogin"><i class="fa fa-tachometer"></i> My Dashboard</a></li>
+                <!--<li data-ng-hide="!authentication.isAuth"><a href="#/refresh">Refresh Token</a></li>-->
+                <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                <li data-ng-hide="authentication.isAuth"> <a href="#/login"><i class="fa fa-sign-in"></i> Login</a></li>
+                <li data-ng-hide="authentication.isAuth"> <a href="#/signup"><i class="fa fa-plus"></i> Sign Up</a></li>
+            </ul>
+        </div>
 
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div data-ng-view="">
+
+    </div>
+</div>
+<hr/>
+<div id="footer">
     <div class="container">
-        <div data-ng-view="">
-
-        </div>
-    </div>
-    <hr />
-    <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="text-muted">Registered & Coyrighted by Rated Tenants. Twitter: <a target="_blank" href="http://twitter.com/ratendTenants">@ratedtenants</a></p>
-                </div>
-                <div class="col-md-6">
-                    <p class="text-muted">Newsroom: <a target="_blank" href="http://ratedenants.blogs.net">ratedenants.blogs.net</a></p>
-                </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-muted">
+                    <i class="fa fa-info-circle"></i> Registered & Coyrighted by Rated Tenants. Twitter: <a target="_blank" href="http://twitter.com/ratendTenants">@ratedtenants</a>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p class="text-muted">
+                    <i class="fa fa-rss-square"></i> Newsroom: <a target="_blank" href="http://ratedenants.blogs.net">ratedenants.blogs.net</a>
+                </p>
             </div>
         </div>
     </div>
-    <!-- 3rd party libraries -->
-    <script src="http://momentjs.com/downloads/moment.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="scripts/angular-local-storage.min.js"></script>
-    <script src="http://code.angularjs.org/1.5.3/angular-animate.min.js"></script>
-    <script src="scripts/angucomplete-alt.js"></script>
-    <script src="scripts/ng-file-upload/ng-file-upload-shim.min.js"></script>
-    <script src="scripts/ng-file-upload/ng-file-upload.min.js"></script>
-    <script src="scripts/angular-ui-notification/angular-ui-notification.min.js"></script>
-    <script src="scripts/cgarvis-angular-toggle-switch-5f3f523/angular-toggle-switch.min.js"></script>
+</div>
 
-    <script src="scripts/angularModalService.js"></script>
+<!-- 3rd party libraries -->
+<script src="http://momentjs.com/downloads/moment.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="scripts/angular-local-storage.min.js"></script>
+<script src="http://code.angularjs.org/1.5.3/angular-animate.min.js"></script>
+<script src="scripts/angucomplete-alt.js"></script>
+<script src="scripts/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script src="scripts/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="scripts/angular-ui-notification/angular-ui-notification.min.js"></script>
+<script src="scripts/cgarvis-angular-toggle-switch-5f3f523/angular-toggle-switch.min.js"></script>
 
-
-
-
-    <script src="scripts/loading-bar.min.js"></script>
-    <!-- Load app main script -->
-    <script src="app/app.js?v=2"></script>
-    <script src="app/directives/jsdatepicker.js"></script>
-    <script src="app/directives/startrating.js"></script>
-    <script src="app/directives/showErrors.js"></script>
-
-    <script src="app/directives/personPartialView.js"></script>
+<script src="scripts/angularModalService.js"></script>
 
 
 
-    <!-- Load services -->
-    <script src="app/services/authInterceptorService.js?v=2"></script>
-    <script src="app/services/authService.js?v=2"></script>
-    <script src="app/services/ordersService.js?v=2"></script>
-    <script src="app/services/tokensManagerService.js?v=2"></script>
-    <script src="app/services/peopleServices.js"></script>
-    <script src="app/services/personDataService.js"></script>
-    <script src="app/commonFunctions.js"></script>
 
-    <!--modules-->
-    <!-- Load Domain Models -->
-    <script src="app/generated-types.js"></script>
+<script src="scripts/loading-bar.min.js"></script>
+<!-- Load app main script -->
+<script src="app/app.js?v=2"></script>
+<script src="app/directives/jsdatepicker.js"></script>
+<script src="app/directives/startrating.js"></script>
+<script src="app/directives/showErrors.js"></script>
 
-    <!-- Load controllers -->
-    <script src="app/controllers/indexController.js?v=2"></script>
-    <script src="app/controllers/homeController.js?v=2"></script>
-    <script src="app/controllers/loginController.js?v=2"></script>
-    <script src="app/controllers/signupController.js?v=2"></script>
-    <script src="app/controllers/ordersController.js?v=2"></script>
-    <script src="app/controllers/refreshController.js?v=2"></script>
-    <script src="app/controllers/tokensManagerController.js?v=2"></script>
-    <script src="app/controllers/associateController.js?v=2"></script>
-    <script src="app/controllers/postLoginController.js?v=2"></script>
-    
-    <script src="app/views/Register/Tenant/Step1.js"></script>
-    <script src="app/views/Register/Tenant/Step2.js"></script>
-    <script src="app/views/Register/Landlord/Step1.js"></script>
-    <script src="app/views/Register/Landlord/Step2.js"></script>
-
-    <script src="app/controllers/signUpLandlordController.js"></script>
-    <script src="app/views/Dashboard/Landlord/home.js"></script>
-    <script src="app/views/Dashboard/Tenant/home.js"></script>
-    <script src="app/views/Dashboard/Landlord/myRatings.js"></script>
-    <script src="app/views/Dashboard/Landlord/creditcheck.js"></script>
-    <script src="app/views/Dashboard/Landlord/myReviews.js"></script>
-    <script src="app/views/Dashboard/Landlord/policeverification.js"></script>
-    <script src="app/views/Dashboard/Landlord/profile.js"></script>
-    <script src="app/views/Dashboard/Landlord/rateTenant.js"></script>
-    <script src="app/views/Dashboard/Landlord/reportNewTenant.js"></script>
-    <script src="app/views/Dashboard/Landlord/score.js"></script>
-    <script src="app/views/Dashboard/Landlord/search.js"></script>
-    <script src="app/views/Dashboard/Landlord/tenantcheck.js"></script>
-    <script src="app/views/Dashboard/Landlord/tenanthistory.js"></script>
-    <script src="app/views/Dashboard/Landlord/addnewaddress.js"></script>
-
-    <script src="app/views/Dashboard/Tenant/addresscheck.js"></script>
-    <script src="app/views/Dashboard/Tenant/landlordhistory.js"></script>
-    <script src="app/views/Dashboard/Tenant/myRatings.js"></script>
-    <script src="app/views/Dashboard/Tenant/myReviews.js"></script>
-    <!--<script src="app/views/Dashboard/Tenant/policeverification.js"></script>-->
-    <script src="app/views/Dashboard/Tenant/profile.js"></script>
-    <script src="app/views/Dashboard/Tenant/rateLandlord.js"></script>
-    <script src="app/views/Dashboard/Tenant/reportMove.js"></script>
-    <script src="app/views/Dashboard/Tenant/score.js"></script>
-    <script src="app/views/Dashboard/Tenant/search.js"></script>
-    <script src="app/views/Dashboard/Tenant/addressprofile.js"></script>
-    <script src="app/views/ModalViews/personSrchModalCtrl.js"></script>
-    <script src="app/views/ModalViews/personSrchRsltModalCtrl.js"></script>
+<script src="app/directives/personPartialView.js"></script>
 
 
 
-    <!-- Load custom filters -->
-    <!-- Load custom directives -->
-    <!--<script language="javascript">
-        $('body').on('focus', ".datepicker_recurring_start", function () {
-            $(this).datepicker();
-        });
+<!-- Load services -->
+<script src="app/services/authInterceptorService.js?v=2"></script>
+<script src="app/services/authService.js?v=2"></script>
+<script src="app/services/ordersService.js?v=2"></script>
+<script src="app/services/tokensManagerService.js?v=2"></script>
+<script src="app/services/peopleServices.js"></script>
+<script src="app/services/personDataService.js"></script>
+<script src="app/commonFunctions.js"></script>
+
+<!--modules-->
+<!-- Load Domain Models -->
+<script src="app/generated-types.js"></script>
+
+<!-- Load controllers -->
+<script src="app/controllers/indexController.js?v=2"></script>
+<script src="app/controllers/homeController.js?v=2"></script>
+<script src="app/controllers/loginController.js?v=2"></script>
+<script src="app/controllers/signupController.js?v=2"></script>
+<script src="app/controllers/ordersController.js?v=2"></script>
+<script src="app/controllers/refreshController.js?v=2"></script>
+<script src="app/controllers/tokensManagerController.js?v=2"></script>
+<script src="app/controllers/associateController.js?v=2"></script>
+<script src="app/controllers/postLoginController.js?v=2"></script>
+
+<script src="app/views/Register/Tenant/Step1.js"></script>
+<script src="app/views/Register/Tenant/Step2.js"></script>
+<script src="app/views/Register/Landlord/Step1.js"></script>
+<script src="app/views/Register/Landlord/Step2.js"></script>
+
+<script src="app/controllers/signUpLandlordController.js"></script>
+<script src="app/views/Dashboard/Landlord/home.js"></script>
+<script src="app/views/Dashboard/Tenant/home.js"></script>
+<script src="app/views/Dashboard/Landlord/myRatings.js"></script>
+<script src="app/views/Dashboard/Landlord/creditcheck.js"></script>
+<script src="app/views/Dashboard/Landlord/myReviews.js"></script>
+<script src="app/views/Dashboard/Landlord/policeverification.js"></script>
+<script src="app/views/Dashboard/Landlord/profile.js"></script>
+<script src="app/views/Dashboard/Landlord/rateTenant.js"></script>
+<script src="app/views/Dashboard/Landlord/reportNewTenant.js"></script>
+<script src="app/views/Dashboard/Landlord/score.js"></script>
+<script src="app/views/Dashboard/Landlord/search.js"></script>
+<script src="app/views/Dashboard/Landlord/tenantcheck.js"></script>
+<script src="app/views/Dashboard/Landlord/tenanthistory.js"></script>
+<script src="app/views/Dashboard/Landlord/addnewaddress.js"></script>
+
+<script src="app/views/Dashboard/Tenant/addresscheck.js"></script>
+<script src="app/views/Dashboard/Tenant/landlordhistory.js"></script>
+<script src="app/views/Dashboard/Tenant/myRatings.js"></script>
+<script src="app/views/Dashboard/Tenant/myReviews.js"></script>
+<!--<script src="app/views/Dashboard/Tenant/policeverification.js"></script>-->
+<script src="app/views/Dashboard/Tenant/profile.js"></script>
+<script src="app/views/Dashboard/Tenant/rateLandlord.js"></script>
+<script src="app/views/Dashboard/Tenant/reportMove.js"></script>
+<script src="app/views/Dashboard/Tenant/score.js"></script>
+<script src="app/views/Dashboard/Tenant/search.js"></script>
+<script src="app/views/Dashboard/Tenant/addressprofile.js"></script>
+<script src="app/views/ModalViews/personSrchModalCtrl.js"></script>
+<script src="app/views/ModalViews/personSrchRsltModalCtrl.js"></script>
 
 
-    </script>-->
+
 
 
 </body>
+
+<script language="javascript">
+    $('.nav a').on('click', function () {
+        $('.navbar-toggle').click();
+    });
+</script>
 </html>
