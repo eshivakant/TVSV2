@@ -102,12 +102,22 @@ class signUpTenantStep2Ctrl {
         this.tRegModel.previousLandlords = new Array<TVS.API.Entities.Person>();
         for (var i = 0; i < this.flatModels.length; i++) {
             var o = new TVS.API.Entities.AddressOwnership();
-            o.ownedFrom = this.flatModels[i].ownedFrom;
-            o.ownedTo = this.flatModels[i].ownedTo;
+            o.ownedFrom = this.flatModels[i].occupiedFrom; //owned  = occupied since tenant won't know about other period
+            o.ownedTo = this.flatModels[i].occupiedTo;
             o.address = this.flatModels[i].address;
             this.flatModels[i].person.addressOwnerships = new Array<TVS.API.Entities.AddressOwnership>();
             this.flatModels[i].person.addressOwnerships.push(o);
+            
+
+            o.address.addressOccupations = new Array<TVS.API.Entities.AddressOccupation>();
+            var oc = new TVS.API.Entities.AddressOccupation();
+            oc.occupiedFrom = this.flatModels[i].occupiedFrom;
+            oc.occupiedTo = this.flatModels[i].occupiedTo;
+            oc.personId = this.tRegModel.person.id;
+            o.address.addressOccupations.push(oc);
+
             this.tRegModel.previousLandlords.push(this.flatModels[i].person);
+
         }
         
         this.http.post(serviceBase + '/Api/Tenant/RegisterStep2', this.tRegModel)

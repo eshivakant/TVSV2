@@ -355,6 +355,7 @@ namespace TVS.API.Controllers
                         }
 
                     }
+                    await _context.SaveChangesAsync();
                 }
 
                 await _context.SaveChangesAsync();

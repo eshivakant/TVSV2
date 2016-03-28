@@ -109,6 +109,15 @@ class signUpLandlordStep2Ctrl {
             o.person = this.flatModels[i].person;
             a.addressOccupations.push(o);
 
+            
+            var myOwnership = new TVS.API.Entities.AddressOwnership();
+            myOwnership.personId = this.lRegModel.person.id;
+            myOwnership.ownedFrom = this.flatModels[i].ownedFrom;
+            myOwnership.ownedTo = this.flatModels[i].ownedTo;
+            a.addressOwnerships = new Array<TVS.API.Entities.AddressOwnership>();
+            a.addressOwnerships.push(myOwnership);
+
+
             this.lRegModel.ownedAddresses.push(a);
         }
         
