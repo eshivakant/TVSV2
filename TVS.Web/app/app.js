@@ -29,17 +29,19 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/lsignup.html"
     });
     $routeProvider.when("/lsignup1", {
-        controller: "signUpLandlordController",
+        controller: "signUpLandlordStep1Ctrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/Register/landlord/step1.html"
     });
     $routeProvider.when("/lsignup2", {
-        controller: "signUpLandlordController",
+        controller: "signUpLandlordStep2Ctrl",
+        controllerAs: "vm",
         templateUrl: "/app/views/Register/landlord/step2.html"
     });
-    $routeProvider.when("/lsignup3", {
-        controller: "signUpLandlordController",
-        templateUrl: "/app/views/Register/landlord/step3.html"
-    });
+    //$routeProvider.when("/lsignup3", {
+    //    controller: "signUpLandlordController",
+    //    templateUrl: "/app/views/Register/landlord/step3.html"
+    //});
     $routeProvider.when("/tsignup1", {
         controller: "signUpTenantStep1Ctrl",
         controllerAs: "vm",

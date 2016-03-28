@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using TVS.API.Entities;
+using TVS.API.Models;
 
 namespace TVS.API.Controllers
 {
@@ -321,6 +322,52 @@ namespace TVS.API.Controllers
         }
 
 
+
+        [Route("RegisterStep2")]
+        [HttpPost]
+        public async Task<IHttpActionResult> RegisterStep2([FromBody] LandlordRegistration lReg)
+        {
+            try
+            {
+                if (lReg.Person.Id == 0) throw new Exception("Error updating...");
+
+                var dbPerson = await _context.People.FirstOrDefaultAsync(p => p.Id == lReg.Person.Id);
+
+                if (dbPerson == null) return NotFound();
+                
+
+                foreach (var adddress in lReg.OwnedAddresses)
+                {
+                    //check if there was a tenant
+                    var addressOccupation = adddress.AddressOccupations.FirstOrDefault();
+                    if (addressOccupation != null)
+                    {
+                        //check if it was a known person
+                        if (addressOccupation.Person.Id != 0)
+                        {
+                            addressOccupation.PersonId = addressOccupation.Person.Id;
+                            addressOccupation.Person = null;
+                            _context.Addresses.Add(adddress);
+                        }
+                        else
+                        {
+                            _context.Addresses.Add(adddress);
+                        }
+
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+
+            return Ok();
+        }
 
 
 

@@ -42,11 +42,6 @@ class signUpTenantStep2Ctrl {
         this.http.get(serviceBase + '/Api/Tenant/Template' + '?hash=' + Math.random()) //to avoid caching
             .then(response => {
                 this.tRegModel.person = <TVS.API.Entities.Person>response.data;
-                //this.tRegModel.person.addressOccupations = new Array<TVS.API.Entities.AddressOccupation>();
-                //var addressOcc = new TVS.API.Entities.AddressOccupation();
-                //addressOcc.address = new TVS.API.Entities.Address();
-                //addressOcc.address.addressOwnerships = new Array<TVS.API.Entities.AddressOwnership>();
-                //this.tRegModel.person.addressOccupations.push();
             }, () => this.Notification.error({ message: 'Server Error Ocurred!', delay: 1000 }));
     }
 

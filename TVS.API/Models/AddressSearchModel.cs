@@ -53,6 +53,14 @@ namespace TVS.API.Models
         public List<Person> PreviousLandlords { get; set; }
     }
 
+
+    [TypeScript]
+    public class LandlordRegistration
+    {
+        public Person Person { get; set; }
+        public List<Address> OwnedAddresses { get; set; }
+    }
+
     [TypeScript]
     public class PersonAddressFlatModel
     {

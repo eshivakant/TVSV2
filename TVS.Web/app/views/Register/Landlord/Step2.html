@@ -1,7 +1,12 @@
-﻿<div class="container">
+﻿
+<link href="../../../../content/css/infocard.css" rel="stylesheet" />
 
 
-    <form class="form-horizontal">
+
+<div class="container">
+
+
+    <form name="myForm" class="form-horizontal">
         <div class="row setup-content" id="tstep-2">
             <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10" style="margin: 15px">
                 <div>
@@ -9,13 +14,13 @@
                     <div class="alert alert-info text-center" role="alert">You can provide your property details here. At-least one address is mandatory, but you can provide multiple addresses if you own more than one. </div>
                     <hr />
 
-                    <div ng-repeat="oc in newPerson.addressOwnerships" class="table-bordered" style="padding: 5px; margin-bottom: 10px;background-color: whitesmoke">
-                        <div class="h4" style="margin: 10px; text-align: center;font-weight: bold">Please enter your property address below</div>
+                    <div ng-repeat="oc in vm.flatModels" class="table-bordered" style="padding: 5px; margin-bottom: 10px; background-color: whitesmoke">
+                        <div class="h4" style="margin: 10px; text-align: center; font-weight: bold">Please enter your property address:</div>
                         <hr />
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">Address Line 1</div>
                             <div class="col-md-10">
-                                <input ng-model="oc.address.addressLine1" class="form-control" />
+                                <input name="addressLine1" ng-required="true" ng-model="oc.address.addressLine1" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -30,55 +35,111 @@
                                 <input ng-model="oc.address.addressLine3" class="form-control" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">City</div>
                             <div class="col-md-10">
-                                <input ng-model="oc.address.city" class="form-control" />
+                                <input name="city" ng-required="true" ng-model="oc.address.city" class="form-control" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">State</div>
                             <div class="col-md-10">
-                                <input ng-model="oc.address.state" class="form-control" />
+                                <input name="state" ng-required="true" ng-model="oc.address.state" class="form-control" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" show-errors>
                             <div class="col-md-2 control-label">Pin Code</div>
                             <div class="col-md-10">
-                                <input ng-model="oc.address.postCode" class="form-control" />
+                                <input name="postCode" ng-required="true" ng-model="oc.address.postCode" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">Owned Since</div>
+                            <div class="col-md-10">
+                                <input name="occupiedFrom" ng-required="true" jqdatepicker class="form-control" ng-model="oc.ownedFrom" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-2 control-label">Owned From</div>
+                            <div class="col-md-2 control-label">Owned Till</div>
                             <div class="col-md-10">
-                                <input jqdatepicker class="form-control"  ng-model="oc.ownedFrom" />
+                                <input jqdatepicker class="form-control" ng-model="oc.ownedTo" placeholder="leave blank if you still own the property"/>
+                            </div>
+                        </div>
+
+
+                        <div class="h5 text-center">
+                            Name of your present or previous tenant? If this property was not rented out, enter NA in all fields.
+                        </div>
+
+                        <hr />
+
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Initial
+                            </div>
+
+                            <div class="col-md-10">
+                                <input name="initial" ng-required="true" ng-model="oc.person.initial" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                First Name
+                            </div>
+                            <div class="col-md-10">
+                                <input name="firstName" ng-required="true" ng-model="oc.person.firstName" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                Middle Name
+                            </div>
+
+                            <div class="col-md-10">
+                                <input ng-model="oc.person.middleName" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" show-errors>
+                            <div class="col-md-2 control-label">
+                                Last Name
+                            </div>
+
+                            <div class="col-md-10">
+                                <input name="lastName" ng-required="true" ng-model="oc.person.lastName" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <div class="col-md-2 control-label">Lived Here Since</div>
+                            <div class="col-md-10">
+                                <input name="occupiedFrom"  jqdatepicker class="form-control" ng-model="oc.occupiedFrom" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-2 control-label">Owned To</div>
+                            <div class="col-md-2 control-label">Owned Till</div>
                             <div class="col-md-10">
-                                <input jqdatepicker class="form-control" ng-model="oc.ownedTo" />
+                                <input jqdatepicker class="form-control" ng-model="oc.occupiedTo" placeholder="leave blank if he is still living in the property" />
                             </div>
                         </div>
+
                     </div>
-                    
 
                     <div class="row form-group">
-                        <button class="btn btn-dribbble btn-xs pull-right" ng-click="addNewAddressOwnership()" style="margin: 15px">add another property</button>
-                    </div>
-
-                    <div class="alert alert-danger text-center" role="alert" ng-show="registrationError!=''">
-                        {{registrationError}}
+                        <button class="btn btn-dribbble btn-xs pull-right" ng-disabled="myForm.$invalid" ng-click="vm.searchAndAddNewAddressOwnership()" style="margin: 15px" formnovalidate>add another previous address</button>
+                        <!--<button ng-click="removeAddress($index)">delete</button>-->
                     </div>
 
                     <hr />
 
                     <div class="row form-group">
-                        <button class="btn btn-primary btn-md pull-right row" ng-click="savePerson(2)" style="margin: 15px">Save</button>
+                        <button class="btn btn-primary btn-md pull-right row" ng-disabled="myForm.$invalid" ng-click="vm.searchAndSave()" style="margin: 15px">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-  
-        </form>
+
+    </form>
 </div>

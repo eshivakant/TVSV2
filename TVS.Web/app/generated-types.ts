@@ -34,6 +34,10 @@ module TVS.API.Models {
 		public person: TVS.API.Entities.Person;
 		public previousLandlords: Array<TVS.API.Entities.Person>;
 	}
+	export class LandlordRegistration {
+		public person: TVS.API.Entities.Person;
+		public ownedAddresses: Array<TVS.API.Entities.Address>;
+	}
 	export class PersonAddressFlatModel {
 		public person: TVS.API.Entities.Person;
 		public address: TVS.API.Entities.Address;
